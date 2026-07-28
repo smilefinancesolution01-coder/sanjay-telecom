@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+  <title>Contact – Sanjay Telecom | Airtel Distributor</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; font-family:'Segoe UI',Roboto,system-ui,sans-serif; }
+    body { background:#fafafa; color:#1e1e1e; overflow-x:hidden; scroll-behavior:smooth; }
+    :root { --primary:#e60000; --primary-dark:#b30000; --secondary:#1a1a1a; --white:#ffffff; --glass:rgba(255,255,255,0.72); --shadow:0 16px 40px rgba(0,0,0,0.06); }
+
+    /* LOADER */
+    #loader { position:fixed; inset:0; background:#1a1a1a; display:flex; align-items:center; justify-content:center; z-index:9999; transition:opacity 0.7s; }
+    #loader.hide { opacity:0; pointer-events:none; }
+    .loader-ring { width:56px; height:56px; border:6px solid #2a2a2a; border-top:6px solid var(--primary); border-radius:50%; animation:spin 0.9s linear infinite; }
+    @keyframes spin { to { transform:rotate(360deg); } }
+
+    /* NAVBAR */
+    .navbar { background:rgba(255,255,255,0.92); backdrop-filter:blur(8px); padding:0.7rem 2rem; display:flex; justify-content:space-between; align-items:center; box-shadow:0 4px 18px rgba(0,0,0,0.03); position:sticky; top:0; z-index:1000; }
+    .logo { font-size:1.9rem; font-weight:700; letter-spacing:-0.5px; color:var(--secondary); }
+    .logo span { color:var(--primary); }
+    .nav-links { display:flex; align-items:center; gap:2rem; list-style:none; }
+    .nav-links a { text-decoration:none; color:#222; font-weight:500; transition:0.2s; position:relative; }
+    .nav-links a:hover { color:var(--primary); }
+    .nav-links a::after { content:''; position:absolute; bottom:-4px; left:0; width:0; height:2px; background:var(--primary); transition:0.25s; }
+    .nav-links a:hover::after { width:100%; }
+    .nav-cta { background:var(--primary); color:#fff !important; padding:0.5rem 1.5rem; border-radius:40px; font-weight:600; }
+    .nav-cta:hover { background:var(--primary-dark); transform:scale(1.02); }
+    .nav-cta::after { display:none; }
+    .hamburger { display:none; font-size:2rem; background:none; border:none; cursor:pointer; color:var(--secondary); }
+
+    /* mobile nav */
+    .mobile-nav { position:fixed; top:0; right:-100%; width:280px; height:100vh; background:var(--white); box-shadow:-8px 0 30px rgba(0,0,0,0.06); padding:2rem 1.5rem; transition:0.35s cubic-bezier(0.23,1,0.32,1); z-index:2000; display:flex; flex-direction:column; gap:1.6rem; }
+    .mobile-nav.open { right:0; }
+    .mobile-nav a { text-decoration:none; font-size:1.15rem; font-weight:500; color:#1a1a1a; border-bottom:1px solid #eee; padding:0.6rem 0; }
+    .mobile-nav .close-btn { align-self:flex-end; font-size:2.2rem; background:none; border:none; cursor:pointer; }
+    .overlay { position:fixed; inset:0; background:rgba(0,0,0,0.2); backdrop-filter:blur(2px); z-index:1500; opacity:0; pointer-events:none; transition:0.3s; }
+    .overlay.active { opacity:1; pointer-events:auto; }
+
+    /* HERO */
+    .contact-hero { background:linear-gradient(135deg,#1a1a1a 0%,#2d0a0a 100%); padding:4rem 2rem; text-align:center; color:#fff; position:relative; overflow:hidden; }
+    .contact-hero h1 { font-size:clamp(2.6rem,8vw,4.2rem); font-weight:800; }
+    .contact-hero h1 span { color:var(--primary); }
+    .contact-hero p { max-width:680px; margin:1.2rem auto 0; opacity:0.8; font-size:1.15rem; }
+    .hero-shapes { position:absolute; inset:0; pointer-events:none; }
+    .hero-shapes span { position:absolute; border-radius:50%; background:rgba(230,0,0,0.08); animation:float 20s infinite alternate ease-in-out; }
+    .hero-shapes span:nth-child(1) { width:300px; height:300px; top:-80px; right:-40px; }
+    .hero-shapes span:nth-child(2) { width:200px; height:200px; bottom:20px; left:-60px; animation-duration:26s; }
+    @keyframes float { 0% { transform:translate(0,0) scale(1); } 100% { transform:translate(20px,-30px) scale(1.08); } }
+
+    /* section */
+    .section { padding:4rem 2rem; max-width:1300px; margin:0 auto; }
+    .section-title { font-size:2.4rem; font-weight:700; margin-bottom:0.8rem; letter-spacing:-0.5px; }
+    .section-title span { color:var(--primary); }
+    .section-sub { color:#555; margin-bottom:2.8rem; font-size:1.05rem; }
+
+    /* glass card */
+    .glass-card { background:var(--glass); backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px); border-radius:28px; padding:1.8rem 1.6rem; box-shadow:var(--shadow); border:1px solid rgba(255,255,255,0.25); transition:all 0.3s ease; }
+    .glass-card:hover { transform:translateY(-4px); box-shadow:0 28px 48px rgba(0,0,0,0.06); background:rgba(255,255,255,0.85); }
+
+    .grid-2 { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:2rem; }
+    .grid-3 { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:2rem; }
+
+    .info-item { display:flex; align-items:center; gap:1rem; padding:0.6rem 0; }
+    .info-item i { font-size:1.8rem; color:var(--primary); width:2.4rem; }
+
+    .contact-form input, .contact-form textarea { width:100%; padding:0.9rem 1.2rem; border-radius:40px; border:1px solid #ddd; background:#fff; font-size:1rem; margin-bottom:1rem; transition:0.2s; }
+    .contact-form input:focus, .contact-form textarea:focus { outline:none; border-color:var(--primary); box-shadow:0 0 0 3px rgba(230,0,0,0.1); }
+    .contact-form textarea { border-radius:24px; min-height:120px; resize:vertical; }
+    .btn { padding:0.8rem 2.2rem; border-radius:50px; border:none; font-weight:600; display:inline-flex; align-items:center; gap:10px; cursor:pointer; text-decoration:none; transition:0.2s; font-size:1rem; }
+    .btn-primary { background:var(--primary); color:#fff; }
+    .btn-primary:hover { background:var(--primary-dark); transform:scale(1.02); }
+    .btn-whatsapp { background:#25d366; color:#fff; }
+    .btn-whatsapp:hover { background:#1da851; transform:scale(1.02); }
+
+    .map-placeholder { background:#eaeaea; border-radius:28px; height:280px; display:flex; align-items:center; justify-content:center; color:#888; font-size:1.2rem; gap:0.8rem; margin-top:1rem; }
+    .map-placeholder i { font-size:2.4rem; color:var(--primary); }
+
+    .hours-card { text-align:center; }
+    .hours-card .day { display:flex; justify-content:space-between; padding:0.4rem 0; border-bottom:1px solid #eee; }
+
+    .faq-item { border-bottom:1px solid #e0e0e0; padding:0.8rem 0; }
+    .faq-question { display:flex; justify-content:space-between; font-weight:600; font-size:1.05rem; cursor:pointer; padding:0.4rem 0; }
+    .faq-answer { max-height:0; overflow:hidden; transition:0.3s; color:#444; }
+    .faq-item.open .faq-answer { max-height:200px; padding:0.5rem 0 0.8rem; }
+
+    .social-icons { display:flex; gap:1.2rem; margin-top:1rem; }
+    .social-icons a { background:#eee; width:48px; height:48px; border-radius:50%; display:flex; align-items:center; justify-content:center; color:#222; font-size:1.4rem; transition:0.2s; text-decoration:none; }
+    .social-icons a:hover { background:var(--primary); color:#fff; transform:scale(1.05); }
+
+    /* footer */
+    .footer { background:#111; color:#ccc; padding:3rem 2rem 1.2rem; margin-top:3rem; }
+    .footer-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(170px,1fr)); gap:2.2rem; max-width:1200px; margin:auto; }
+    .footer a { color:#ccc; text-decoration:none; }
+    .footer a:hover { color:#fff; }
+    .footer-bottom { border-top:1px solid #2a2a2a; margin-top:2.4rem; padding-top:1.6rem; text-align:center; font-size:0.95rem; }
+    .footer-dev a { color:#fff; font-weight:500; }
+    .footer-dev a:hover { color:var(--primary); }
+
+    /* floating */
+    .floating { position:fixed; bottom:1.8rem; right:1.8rem; display:flex; flex-direction:column; gap:0.9rem; z-index:900; }
+    .floating a { width:56px; height:56px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:1.8rem; color:#fff; box-shadow:0 10px 25px rgba(0,0,0,0.18); transition:0.2s; text-decoration:none; }
+    .floating a:hover { transform:scale(1.08); }
+    .floating .call { background:var(--primary); }
+    .floating .whatsapp { background:#25d366; }
+
+    @media (max-width:768px) {
+      .navbar { padding:0.6rem 1rem; }
+      .nav-links { display:none; }
+      .hamburger { display:block; }
+      .section { padding:2.5rem 1rem; }
+      .contact-hero { padding:2.8rem 1rem; }
+      .grid-2 { grid-template-columns:1fr; }
+    }
+  </style>
+</head>
+<body>
+  <!-- LOADER -->
+  <div id="loader"><div class="loader-ring"></div></div>
+
+  <!-- OVERLAY & MOBILE NAV -->
+  <div class="overlay" id="overlay"></div>
+  <div class="mobile-nav" id="mobileNav">
+    <button class="close-btn" id="closeNav"><i class="material-icons">close</i></button>
+    <a href="#contact-info">Contact</a>
+    <a href="#form">Enquiry</a>
+    <a href="#hours">Hours</a>
+    <a href="#faq">FAQ</a>
+    <a href="tel:8298593107" style="color:var(--primary);font-weight:700;"><i class="fas fa-phone-alt"></i> Call Now</a>
+  </div>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="logo">Sanjay<span>Telecom</span></div>
+    <ul class="nav-links">
+      <a href="#contact-info">Contact</a>
+      <a href="#form">Enquiry</a>
+      <a href="#hours">Hours</a>
+      <a href="#faq">FAQ</a>
+      <a href="tel:8298593107" class="nav-cta"><i class="fas fa-phone-alt"></i> Call Now</a>
+    </ul>
+    <button class="hamburger" id="hamburger"><i class="material-icons">menu</i></button>
+  </nav>
+
+  <!-- HERO -->
+  <section class="contact-hero">
+    <div class="hero-shapes"><span></span><span></span></div>
+    <h1>Get in <span>Touch</span></h1>
+    <p>We're here to help – reach out for any Airtel service.</p>
+  </section>
+
+  <!-- CONTACT INFO + MAP -->
+  <section class="section" id="contact-info">
+    <div class="grid-2">
+      <div>
+        <div class="glass-card">
+          <h3 style="color:var(--primary);"><i class="fas fa-phone-alt"></i> Contact Information</h3>
+          <div class="info-item"><i class="fas fa-phone-alt"></i> <div><strong>Customer Care</strong><br>8298593107</div></div>
+          <div class="info-item"><i class="fab fa-whatsapp" style="color:#25d366;"></i> <div><strong>WhatsApp</strong><br>8298593107</div></div>
+          <div class="info-item"><i class="fas fa-envelope"></i> <div><strong>Email</strong><br>support@sanjaytelecom.in</div></div>
+          <div class="info-item"><i class="fas fa-map-marker-alt"></i> <div><strong>Location</strong><br>New Delhi, India</div></div>
+          <div style="margin-top:1.5rem; display:flex; gap:0.8rem; flex-wrap:wrap;">
+            <a href="tel:8298593107" class="btn btn-primary"><i class="fas fa-phone-alt"></i> Call Now</a>
+            <a href="https://wa.me/918298593107" class="btn btn-whatsapp"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+          </div>
+          <div class="social-icons">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="glass-card" style="padding:1.2rem;">
+          <h3 style="color:var(--primary);"><i class="fas fa-map-pin"></i> Find Us</h3>
+          <div class="map-placeholder">
+            <i class="fas fa-map-marked-alt"></i> Google Map – Sanjay Telecom
+          </div>
+          <p style="margin-top:0.8rem; font-size:0.95rem; color:#555;"><i class="fas fa-location-dot" style="color:var(--primary);"></i> 123, Airtel Tower, Connaught Place, New Delhi</p>
+        </div>
+        <!-- Location Card -->
+        <div class="glass-card" style="margin-top:1.5rem;">
+          <h3 style="color:var(--primary);"><i class="fas fa-store"></i> Location Card</h3>
+          <p><strong>Sanjay Telecom</strong><br>Authorised Airtel Distributor<br>Near Metro Station, CP<br>New Delhi - 110001</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT FORM -->
+  <section class="section" id="form">
+    <h2 class="section-title">Send us a <span>Message</span></h2>
+    <div class="grid-2">
+      <div class="glass-card contact-form">
+        <form id="contactForm" onsubmit="event.preventDefault(); alert('Thank you! We\'ll get back to you soon.');">
+          <input type="text" placeholder="Full Name *" required>
+          <input type="tel" placeholder="Phone Number *" required>
+          <input type="email" placeholder="Email Address">
+          <textarea placeholder="Your message about Airtel services..."></textarea>
+          <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;"><i class="fas fa-paper-plane"></i> Send Message</button>
+        </form>
+      </div>
+      <div>
+        <div class="glass-card">
+          <h3 style="color:var(--primary);"><i class="fas fa-clock"></i> Business Hours</h3>
+          <div class="hours-card">
+            <div class="day"><span>Monday – Friday</span> <span>9:00 AM – 8:00 PM</span></div>
+            <div class="day"><span>Saturday</span> <span>10:00 AM – 6:00 PM</span></div>
+            <div class="day"><span>Sunday</span> <span>Closed (Emergency support available)</span></div>
+          </div>
+          <p style="margin-top:1rem; font-size:0.95rem; color:#555;"><i class="fas fa-info-circle" style="color:var(--primary);"></i> 24×7 WhatsApp support for urgent queries.</p>
+        </div>
+        <!-- Extra CTA -->
+        <div style="margin-top:1.5rem; background:var(--primary); padding:1.5rem; border-radius:28px; color:#fff; text-align:center;">
+          <h3>Need instant help?</h3>
+          <p style="margin:0.5rem 0;">Call us directly.</p>
+          <a href="tel:8298593107" style="background:#fff; color:var(--primary); padding:0.6rem 2rem; border-radius:40px; text-decoration:none; font-weight:600; display:inline-block;"><i class="fas fa-phone-alt"></i> 8298593107</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section" id="faq">
+    <h2 class="section-title">Frequently <span>Asked</span></h2>
+    <div class="faq-container">
+      <div class="faq-item"><div class="faq-question">What are your customer care hours? <i class="fas fa-plus"></i></div><div class="faq-answer">Our phone support is available 9 AM – 8 PM, Monday to Saturday. WhatsApp is available 24×7.</div></div>
+      <div class="faq-item"><div class="faq-question">How can I apply for a new Airtel connection? <i class="fas fa-plus"></i></div><div class="faq-answer">You can call us, WhatsApp, or fill the enquiry form above. We'll reach out within 30 minutes.</div></div>
+      <div class="faq-item"><div class="faq-question">Do you offer on-site broadband installation? <i class="fas fa-plus"></i></div><div class="faq-answer">Yes, we provide free professional installation for all broadband plans.</div></div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer" id="contact">
+    <div class="footer-grid">
+      <div><h3 style="color:#fff;">Sanjay Telecom</h3><p>Trusted Airtel Distributor</p><p><i class="fas fa-phone-alt"></i> 8298593107</p><p><i class="fab fa-whatsapp"></i> 8298593107</p></div>
+      <div><h4 style="color:#fff;">Quick Links</h4><a href="#contact-info">Contact</a><br><a href="#form">Enquiry</a><br><a href="#hours">Hours</a><br><a href="#faq">FAQ</a></div>
+      <div><h4 style="color:#fff;">Follow</h4><a href="#"><i class="fab fa-facebook"></i> Facebook</a><br><a href="#"><i class="fab fa-instagram"></i> Instagram</a><br><a href="#"><i class="fab fa-youtube"></i> YouTube</a></div>
+      <div><h4 style="color:#fff;">Visit</h4><div style="background:#2a2a2a;border-radius:16px;padding:0.6rem;text-align:center;color:#888;"><i class="fas fa-map-pin"></i> Google Map</div></div>
+    </div>
+    <div class="footer-bottom">
+      <div>© 2026 Sanjay Telecom. All rights reserved.</div>
+      <div class="footer-dev">Designed &amp; Developed by <a href="#" target="_blank">Web.Smile Financial Solution</a></div>
+    </div>
+  </footer>
+
+  <!-- FLOATING -->
+  <div class="floating">
+    <a href="tel:8298593107" class="call"><i class="fas fa-phone-alt"></i></a>
+    <a href="https://wa.me/918298593107" class="whatsapp"><i class="fab fa-whatsapp"></i></a>
+  </div>
+
+  <script>
+    (function() {
+      // loader
+      window.addEventListener('load', ()=> document.getElementById('loader').classList.add('hide'));
+
+      // mobile nav
+      const hamburger = document.getElementById('hamburger');
+      const mobileNav = document.getElementById('mobileNav');
+      const overlay = document.getElementById('overlay');
+      const closeNav = document.getElementById('closeNav');
+      function toggleNav(open) {
+        mobileNav.classList.toggle('open', open);
+        overlay.classList.toggle('active', open);
+        document.body.style.overflow = open ? 'hidden' : '';
+      }
+      hamburger.addEventListener('click', ()=> toggleNav(true));
+      closeNav.addEventListener('click', ()=> toggleNav(false));
+      overlay.addEventListener('click', ()=> toggleNav(false));
+
+      // FAQ accordion
+      document.querySelectorAll('.faq-question').forEach(q => {
+        q.addEventListener('click', function() {
+          const item = this.parentElement;
+          const isOpen = item.classList.contains('open');
+          document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+          if (!isOpen) item.classList.add('open');
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
