@@ -1,287 +1,1074 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-  <title>Contact – Sanjay Telecom | Airtel Distributor</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <style>
-    * { margin:0; padding:0; box-sizing:border-box; font-family:'Segoe UI',Roboto,system-ui,sans-serif; }
-    body { background:#fafafa; color:#1e1e1e; overflow-x:hidden; scroll-behavior:smooth; }
-    :root { --primary:#e60000; --primary-dark:#b30000; --secondary:#1a1a1a; --white:#ffffff; --glass:rgba(255,255,255,0.72); --shadow:0 16px 40px rgba(0,0,0,0.06); }
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+    <title>Contact – Sanjay Telecom | Airtel Distributor</title>
+    <meta name="description" content="Contact Sanjay Telecom for Airtel services – SIM, broadband, recharge, DTH, and business solutions. Call 8298593107 or WhatsApp." />
+    <meta property="og:title" content="Contact Sanjay Telecom – Airtel Distributor" />
+    <meta property="og:description" content="Reach out to us for all Airtel services. Fast activation & 24x7 support." />
+    <meta property="og:type" content="website" />
+    <link rel="canonical" href="https://sanjaytelecom.com/contact.html" />
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📡</text></svg>" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <style>
+        /* ===== RESET & VARIABLES ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        :root {
+            --primary: #E60012;
+            --primary-dark: #b3000e;
+            --black: #0a0a0a;
+            --dark: #1a1a1a;
+            --gray: #555555;
+            --gray-light: #888888;
+            --light-gray: #f5f5f7;
+            --white: #ffffff;
+            --glass: rgba(255, 255, 255, 0.78);
+            --shadow-sm: 0 4px 20px rgba(0, 0, 0, 0.04);
+            --shadow-md: 0 12px 40px rgba(0, 0, 0, 0.06);
+            --radius: 24px;
+            --radius-lg: 32px;
+            --transition: 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            --font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+        html {
+            scroll-behavior: smooth;
+            -webkit-tap-highlight-color: transparent;
+        }
+        body {
+            font-family: var(--font);
+            background: var(--light-gray);
+            color: var(--dark);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        button {
+            cursor: pointer;
+            border: none;
+            background: none;
+            font-family: inherit;
+        }
+        ul {
+            list-style: none;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
 
-    /* LOADER */
-    #loader { position:fixed; inset:0; background:#1a1a1a; display:flex; align-items:center; justify-content:center; z-index:9999; transition:opacity 0.7s; }
-    #loader.hide { opacity:0; pointer-events:none; }
-    .loader-ring { width:56px; height:56px; border:6px solid #2a2a2a; border-top:6px solid var(--primary); border-radius:50%; animation:spin 0.9s linear infinite; }
-    @keyframes spin { to { transform:rotate(360deg); } }
+        /* ===== LOADER ===== */
+        #loader {
+            position: fixed;
+            inset: 0;
+            background: var(--black);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.7s ease, visibility 0.7s ease;
+        }
+        #loader.hide {
+            opacity: 0;
+            visibility: hidden;
+        }
+        .loader-ring {
+            width: 56px;
+            height: 56px;
+            border: 4px solid rgba(255, 255, 255, 0.06);
+            border-top: 4px solid var(--primary);
+            border-radius: 50%;
+            animation: spin 0.9s linear infinite;
+        }
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
 
-    /* NAVBAR */
-    .navbar { background:rgba(255,255,255,0.92); backdrop-filter:blur(8px); padding:0.7rem 2rem; display:flex; justify-content:space-between; align-items:center; box-shadow:0 4px 18px rgba(0,0,0,0.03); position:sticky; top:0; z-index:1000; }
-    .logo { font-size:1.9rem; font-weight:700; letter-spacing:-0.5px; color:var(--secondary); }
-    .logo span { color:var(--primary); }
-    .nav-links { display:flex; align-items:center; gap:2rem; list-style:none; }
-    .nav-links a { text-decoration:none; color:#222; font-weight:500; transition:0.2s; position:relative; }
-    .nav-links a:hover { color:var(--primary); }
-    .nav-links a::after { content:''; position:absolute; bottom:-4px; left:0; width:0; height:2px; background:var(--primary); transition:0.25s; }
-    .nav-links a:hover::after { width:100%; }
-    .nav-cta { background:var(--primary); color:#fff !important; padding:0.5rem 1.5rem; border-radius:40px; font-weight:600; }
-    .nav-cta:hover { background:var(--primary-dark); transform:scale(1.02); }
-    .nav-cta::after { display:none; }
-    .hamburger { display:none; font-size:2rem; background:none; border:none; cursor:pointer; color:var(--secondary); }
+        /* ===== PROGRESS BAR ===== */
+        #progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            background: var(--primary);
+            z-index: 9998;
+            width: 0%;
+            transition: width 0.08s linear;
+        }
 
-    /* mobile nav */
-    .mobile-nav { position:fixed; top:0; right:-100%; width:280px; height:100vh; background:var(--white); box-shadow:-8px 0 30px rgba(0,0,0,0.06); padding:2rem 1.5rem; transition:0.35s cubic-bezier(0.23,1,0.32,1); z-index:2000; display:flex; flex-direction:column; gap:1.6rem; }
-    .mobile-nav.open { right:0; }
-    .mobile-nav a { text-decoration:none; font-size:1.15rem; font-weight:500; color:#1a1a1a; border-bottom:1px solid #eee; padding:0.6rem 0; }
-    .mobile-nav .close-btn { align-self:flex-end; font-size:2.2rem; background:none; border:none; cursor:pointer; }
-    .overlay { position:fixed; inset:0; background:rgba(0,0,0,0.2); backdrop-filter:blur(2px); z-index:1500; opacity:0; pointer-events:none; transition:0.3s; }
-    .overlay.active { opacity:1; pointer-events:auto; }
+        /* ===== NAVBAR ===== */
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: var(--glass);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.03);
+            padding: 0.8rem 2.4rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: var(--transition);
+        }
+        .navbar.scrolled {
+            box-shadow: var(--shadow-sm);
+        }
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            color: var(--black);
+            display: flex;
+            align-items: center;
+            gap: 3px;
+        }
+        .logo span {
+            color: var(--primary);
+        }
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+        .nav-links a {
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: var(--gray);
+            transition: var(--transition);
+            position: relative;
+        }
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: var(--transition);
+        }
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+        .nav-links a.active {
+            color: var(--primary);
+        }
+        .nav-cta {
+            background: var(--primary);
+            color: var(--white) !important;
+            padding: 0.5rem 1.6rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .nav-cta:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(230, 0, 18, 0.25);
+        }
+        .nav-cta::after {
+            display: none;
+        }
+        .hamburger {
+            display: none;
+            font-size: 1.8rem;
+            color: var(--dark);
+            padding: 4px;
+        }
 
-    /* HERO */
-    .contact-hero { background:linear-gradient(135deg,#1a1a1a 0%,#2d0a0a 100%); padding:4rem 2rem; text-align:center; color:#fff; position:relative; overflow:hidden; }
-    .contact-hero h1 { font-size:clamp(2.6rem,8vw,4.2rem); font-weight:800; }
-    .contact-hero h1 span { color:var(--primary); }
-    .contact-hero p { max-width:680px; margin:1.2rem auto 0; opacity:0.8; font-size:1.15rem; }
-    .hero-shapes { position:absolute; inset:0; pointer-events:none; }
-    .hero-shapes span { position:absolute; border-radius:50%; background:rgba(230,0,0,0.08); animation:float 20s infinite alternate ease-in-out; }
-    .hero-shapes span:nth-child(1) { width:300px; height:300px; top:-80px; right:-40px; }
-    .hero-shapes span:nth-child(2) { width:200px; height:200px; bottom:20px; left:-60px; animation-duration:26s; }
-    @keyframes float { 0% { transform:translate(0,0) scale(1); } 100% { transform:translate(20px,-30px) scale(1.08); } }
+        /* ===== MOBILE NAV ===== */
+        .mobile-nav {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 290px;
+            height: 100vh;
+            background: var(--white);
+            box-shadow: -12px 0 40px rgba(0, 0, 0, 0.06);
+            padding: 2.5rem 2rem;
+            transition: 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+            z-index: 2000;
+            display: flex;
+            flex-direction: column;
+            gap: 1.6rem;
+            overflow-y: auto;
+        }
+        .mobile-nav.open {
+            right: 0;
+        }
+        .mobile-nav .close-btn {
+            align-self: flex-end;
+            font-size: 2.2rem;
+            color: var(--dark);
+        }
+        .mobile-nav a {
+            font-size: 1.15rem;
+            font-weight: 500;
+            color: var(--dark);
+            padding: 0.6rem 0;
+            border-bottom: 1px solid #f0f0f0;
+            transition: var(--transition);
+        }
+        .mobile-nav a:hover {
+            color: var(--primary);
+            padding-left: 6px;
+        }
+        .mobile-nav .nav-cta-mobile {
+            margin-top: 0.5rem;
+            background: var(--primary);
+            color: var(--white);
+            padding: 0.8rem 1.8rem;
+            border-radius: 50px;
+            text-align: center;
+            font-weight: 600;
+            border-bottom: none;
+        }
+        .mobile-nav .nav-cta-mobile:hover {
+            background: var(--primary-dark);
+            padding-left: 1.8rem;
+        }
+        .overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.25);
+            backdrop-filter: blur(4px);
+            z-index: 1500;
+            opacity: 0;
+            pointer-events: none;
+            transition: 0.3s;
+        }
+        .overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
 
-    /* section */
-    .section { padding:4rem 2rem; max-width:1300px; margin:0 auto; }
-    .section-title { font-size:2.4rem; font-weight:700; margin-bottom:0.8rem; letter-spacing:-0.5px; }
-    .section-title span { color:var(--primary); }
-    .section-sub { color:#555; margin-bottom:2.8rem; font-size:1.05rem; }
+        /* ===== BUTTONS ===== */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 0.8rem 2.2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .btn-primary {
+            background: var(--primary);
+            color: var(--white);
+            box-shadow: 0 8px 24px rgba(230, 0, 18, 0.2);
+        }
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 32px rgba(230, 0, 18, 0.3);
+        }
+        .btn-whatsapp {
+            background: #25D366;
+            color: var(--white);
+        }
+        .btn-whatsapp:hover {
+            background: #1da851;
+            transform: translateY(-3px);
+        }
+        .btn-white {
+            background: var(--white);
+            color: var(--primary);
+        }
+        .btn-white:hover {
+            background: var(--light-gray);
+            transform: translateY(-3px);
+        }
 
-    /* glass card */
-    .glass-card { background:var(--glass); backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px); border-radius:28px; padding:1.8rem 1.6rem; box-shadow:var(--shadow); border:1px solid rgba(255,255,255,0.25); transition:all 0.3s ease; }
-    .glass-card:hover { transform:translateY(-4px); box-shadow:0 28px 48px rgba(0,0,0,0.06); background:rgba(255,255,255,0.85); }
+        /* ===== RIPPLE ===== */
+        .ripple {
+            position: relative;
+            overflow: hidden;
+        }
+        .ripple::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            padding-top: 100%;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(0);
+            opacity: 0;
+            pointer-events: none;
+            top: 50%;
+            left: 50%;
+            transform-origin: center;
+        }
+        .ripple:active::after {
+            animation: rippleAnim 0.5s ease-out;
+        }
+        @keyframes rippleAnim {
+            from {
+                transform: scale(0);
+                opacity: 0.4;
+            }
+            to {
+                transform: scale(3);
+                opacity: 0;
+            }
+        }
 
-    .grid-2 { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:2rem; }
-    .grid-3 { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:2rem; }
+        /* ===== HERO ===== */
+        .contact-hero {
+            background: linear-gradient(145deg, #0a0a0a 0%, #1a1a1a 100%);
+            padding: 5rem 2.4rem 6rem;
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+        .contact-hero .bg-pattern {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+        .contact-hero .bg-pattern span {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(230, 0, 18, 0.05);
+            animation: floatBg 25s infinite alternate ease-in-out;
+        }
+        .contact-hero .bg-pattern span:nth-child(1) {
+            width: 450px;
+            height: 450px;
+            top: -160px;
+            right: -100px;
+        }
+        .contact-hero .bg-pattern span:nth-child(2) {
+            width: 300px;
+            height: 300px;
+            bottom: -80px;
+            left: -80px;
+            animation-duration: 32s;
+            background: rgba(230, 0, 18, 0.03);
+        }
+        @keyframes floatBg {
+            0% {
+                transform: translate(0, 0) scale(1);
+            }
+            100% {
+                transform: translate(40px, -50px) scale(1.08);
+            }
+        }
+        .contact-hero h1 {
+            font-size: clamp(2.6rem, 8vw, 4.8rem);
+            font-weight: 800;
+            letter-spacing: -1.5px;
+            color: var(--white);
+            position: relative;
+            z-index: 2;
+        }
+        .contact-hero h1 span {
+            color: var(--primary);
+        }
+        .contact-hero p {
+            color: rgba(255, 255, 255, 0.7);
+            max-width: 640px;
+            margin: 1.2rem auto 0;
+            font-size: 1.15rem;
+            font-weight: 300;
+            position: relative;
+            z-index: 2;
+        }
 
-    .info-item { display:flex; align-items:center; gap:1rem; padding:0.6rem 0; }
-    .info-item i { font-size:1.8rem; color:var(--primary); width:2.4rem; }
+        /* ===== SECTION ===== */
+        .section {
+            padding: 5rem 2.4rem;
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+        .section-title {
+            font-size: 2.4rem;
+            font-weight: 700;
+            letter-spacing: -0.8px;
+            margin-bottom: 0.4rem;
+        }
+        .section-title span {
+            color: var(--primary);
+        }
+        .section-sub {
+            color: var(--gray);
+            font-size: 1.05rem;
+            font-weight: 400;
+            max-width: 640px;
+            margin-bottom: 2.8rem;
+        }
+        .section-center {
+            text-align: center;
+        }
+        .section-center .section-sub {
+            margin-left: auto;
+            margin-right: auto;
+        }
 
-    .contact-form input, .contact-form textarea { width:100%; padding:0.9rem 1.2rem; border-radius:40px; border:1px solid #ddd; background:#fff; font-size:1rem; margin-bottom:1rem; transition:0.2s; }
-    .contact-form input:focus, .contact-form textarea:focus { outline:none; border-color:var(--primary); box-shadow:0 0 0 3px rgba(230,0,0,0.1); }
-    .contact-form textarea { border-radius:24px; min-height:120px; resize:vertical; }
-    .btn { padding:0.8rem 2.2rem; border-radius:50px; border:none; font-weight:600; display:inline-flex; align-items:center; gap:10px; cursor:pointer; text-decoration:none; transition:0.2s; font-size:1rem; }
-    .btn-primary { background:var(--primary); color:#fff; }
-    .btn-primary:hover { background:var(--primary-dark); transform:scale(1.02); }
-    .btn-whatsapp { background:#25d366; color:#fff; }
-    .btn-whatsapp:hover { background:#1da851; transform:scale(1.02); }
+        /* ===== GLASS CARD ===== */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: var(--radius);
+            padding: 2rem 1.8rem;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            transition: var(--transition);
+        }
+        .glass-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-md);
+            background: rgba(255, 255, 255, 0.92);
+        }
 
-    .map-placeholder { background:#eaeaea; border-radius:28px; height:280px; display:flex; align-items:center; justify-content:center; color:#888; font-size:1.2rem; gap:0.8rem; margin-top:1rem; }
-    .map-placeholder i { font-size:2.4rem; color:var(--primary); }
+        /* ===== GRIDS ===== */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2.4rem;
+        }
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 2rem;
+        }
 
-    .hours-card { text-align:center; }
-    .hours-card .day { display:flex; justify-content:space-between; padding:0.4rem 0; border-bottom:1px solid #eee; }
+        /* ===== CONTACT FORM ===== */
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 0.9rem 1.2rem;
+            border-radius: var(--radius-sm);
+            border: 1px solid #e0e0e0;
+            background: var(--white);
+            font-size: 1rem;
+            font-family: var(--font);
+            transition: var(--transition);
+            margin-bottom: 1rem;
+        }
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(230, 0, 18, 0.08);
+        }
+        .contact-form textarea {
+            min-height: 130px;
+            resize: vertical;
+        }
 
-    .faq-item { border-bottom:1px solid #e0e0e0; padding:0.8rem 0; }
-    .faq-question { display:flex; justify-content:space-between; font-weight:600; font-size:1.05rem; cursor:pointer; padding:0.4rem 0; }
-    .faq-answer { max-height:0; overflow:hidden; transition:0.3s; color:#444; }
-    .faq-item.open .faq-answer { max-height:200px; padding:0.5rem 0 0.8rem; }
+        /* ===== CONTACT CARDS ===== */
+        .contact-card {
+            text-align: center;
+            padding: 2rem 1.5rem;
+        }
+        .contact-card .icon {
+            font-size: 2.8rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+        .contact-card .btn {
+            margin-top: 0.8rem;
+        }
 
-    .social-icons { display:flex; gap:1.2rem; margin-top:1rem; }
-    .social-icons a { background:#eee; width:48px; height:48px; border-radius:50%; display:flex; align-items:center; justify-content:center; color:#222; font-size:1.4rem; transition:0.2s; text-decoration:none; }
-    .social-icons a:hover { background:var(--primary); color:#fff; transform:scale(1.05); }
+        /* ===== MAP ===== */
+        .map-placeholder {
+            background: #e8e8e8;
+            border-radius: var(--radius);
+            height: 280px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gray-light);
+            font-size: 1.2rem;
+            gap: 0.8rem;
+            transition: var(--transition);
+        }
+        .map-placeholder i {
+            font-size: 2.8rem;
+            color: var(--primary);
+        }
 
-    /* footer */
-    .footer { background:#111; color:#ccc; padding:3rem 2rem 1.2rem; margin-top:3rem; }
-    .footer-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(170px,1fr)); gap:2.2rem; max-width:1200px; margin:auto; }
-    .footer a { color:#ccc; text-decoration:none; }
-    .footer a:hover { color:#fff; }
-    .footer-bottom { border-top:1px solid #2a2a2a; margin-top:2.4rem; padding-top:1.6rem; text-align:center; font-size:0.95rem; }
-    .footer-dev a { color:#fff; font-weight:500; }
-    .footer-dev a:hover { color:var(--primary); }
+        /* ===== FAQ ===== */
+        .faq-item {
+            border-bottom: 1px solid #e8e8e8;
+            padding: 1rem 0;
+        }
+        .faq-question {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            font-size: 1.05rem;
+            cursor: pointer;
+            padding: 0.3rem 0;
+            transition: var(--transition);
+        }
+        .faq-question:hover {
+            color: var(--primary);
+        }
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: 0.35s ease;
+            color: var(--gray);
+        }
+        .faq-item.open .faq-answer {
+            max-height: 200px;
+            padding: 0.5rem 0 0.8rem;
+        }
+        .faq-item.open .faq-question i {
+            transform: rotate(45deg);
+        }
 
-    /* floating */
-    .floating { position:fixed; bottom:1.8rem; right:1.8rem; display:flex; flex-direction:column; gap:0.9rem; z-index:900; }
-    .floating a { width:56px; height:56px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:1.8rem; color:#fff; box-shadow:0 10px 25px rgba(0,0,0,0.18); transition:0.2s; text-decoration:none; }
-    .floating a:hover { transform:scale(1.08); }
-    .floating .call { background:var(--primary); }
-    .floating .whatsapp { background:#25d366; }
+        /* ===== FOOTER ===== */
+        .footer {
+            background: var(--black);
+            color: #b0b0b0;
+            padding: 4rem 2.4rem 1.5rem;
+            margin-top: 4rem;
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 2.5rem;
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+        .footer a {
+            color: #b0b0b0;
+            transition: var(--transition);
+        }
+        .footer a:hover {
+            color: var(--white);
+        }
+        .footer h4 {
+            color: var(--white);
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+        }
+        .footer .social-icons {
+            display: flex;
+            gap: 0.8rem;
+            margin-top: 0.8rem;
+        }
+        .footer .social-icons a {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.04);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+            font-size: 1.1rem;
+        }
+        .footer .social-icons a:hover {
+            background: var(--primary);
+            color: var(--white);
+        }
+        .footer-bottom {
+            border-top: 1px solid #1a1a1a;
+            margin-top: 3rem;
+            padding-top: 1.8rem;
+            text-align: center;
+            font-size: 0.95rem;
+            max-width: 1280px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .footer-dev a {
+            color: var(--white);
+            font-weight: 500;
+        }
+        .footer-dev a:hover {
+            color: var(--primary);
+        }
 
-    @media (max-width:768px) {
-      .navbar { padding:0.6rem 1rem; }
-      .nav-links { display:none; }
-      .hamburger { display:block; }
-      .section { padding:2.5rem 1rem; }
-      .contact-hero { padding:2.8rem 1rem; }
-      .grid-2 { grid-template-columns:1fr; }
-    }
-  </style>
+        /* ===== FLOATING BUTTONS ===== */
+        .floating {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+            z-index: 900;
+        }
+        .floating a {
+            width: 54px;
+            height: 54px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: var(--white);
+            box-shadow: 0 8px 28px rgba(0, 0, 0, 0.15);
+            transition: var(--transition);
+        }
+        .floating a:hover {
+            transform: scale(1.08);
+        }
+        .floating .call {
+            background: var(--primary);
+        }
+        .floating .whatsapp {
+            background: #25D366;
+        }
+
+        /* ===== SCROLL TOP ===== */
+        #scrollTop {
+            position: fixed;
+            bottom: 2rem;
+            left: 2rem;
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            background: var(--black);
+            color: var(--white);
+            font-size: 1.2rem;
+            z-index: 900;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        #scrollTop.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        #scrollTop:hover {
+            background: var(--primary);
+            transform: scale(1.06);
+        }
+
+        /* ===== SCROLL REVEAL ===== */
+        .reveal {
+            opacity: 0;
+            transform: translateY(35px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 1024px) {
+            .navbar {
+                padding: 0.7rem 1.6rem;
+            }
+            .nav-links {
+                gap: 1.4rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            .hamburger {
+                display: block;
+            }
+            .navbar {
+                padding: 0.6rem 1.2rem;
+            }
+            .nav-cta {
+                display: none;
+            }
+            .contact-hero {
+                padding: 3.5rem 1.2rem 4rem;
+            }
+            .contact-hero h1 {
+                font-size: 2.2rem;
+            }
+            .contact-hero p {
+                font-size: 1rem;
+            }
+            .section {
+                padding: 3rem 1.2rem;
+            }
+            .section-title {
+                font-size: 2rem;
+            }
+            .grid-2,
+            .grid-3 {
+                grid-template-columns: 1fr;
+            }
+            .floating {
+                right: 1rem;
+                bottom: 1.2rem;
+            }
+            .floating a {
+                width: 46px;
+                height: 46px;
+                font-size: 1.3rem;
+            }
+            #scrollTop {
+                left: 1rem;
+                width: 40px;
+                height: 40px;
+                font-size: 1rem;
+            }
+            .footer {
+                padding: 3rem 1.2rem 1.2rem;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .map-placeholder {
+                height: 200px;
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo {
+                font-size: 1.2rem;
+            }
+            .contact-hero h1 {
+                font-size: 1.8rem;
+            }
+            .btn {
+                padding: 0.6rem 1.4rem;
+                font-size: 0.85rem;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+            .contact-card .icon {
+                font-size: 2.2rem;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .contact-hero h1 {
+                font-size: 1.5rem;
+            }
+            .contact-hero p {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
 </head>
 <body>
-  <!-- LOADER -->
-  <div id="loader"><div class="loader-ring"></div></div>
+    <!-- ===== LOADER ===== -->
+    <div id="loader"><div class="loader-ring"></div></div>
 
-  <!-- OVERLAY & MOBILE NAV -->
-  <div class="overlay" id="overlay"></div>
-  <div class="mobile-nav" id="mobileNav">
-    <button class="close-btn" id="closeNav"><i class="material-icons">close</i></button>
-    <a href="#contact-info">Contact</a>
-    <a href="#form">Enquiry</a>
-    <a href="#hours">Hours</a>
-    <a href="#faq">FAQ</a>
-    <a href="tel:8298593107" style="color:var(--primary);font-weight:700;"><i class="fas fa-phone-alt"></i> Call Now</a>
-  </div>
+    <!-- ===== PROGRESS BAR ===== -->
+    <div id="progress-bar"></div>
 
-  <!-- NAVBAR -->
-  <nav class="navbar">
-    <div class="logo">Sanjay<span>Telecom</span></div>
-    <ul class="nav-links">
-      <a href="#contact-info">Contact</a>
-      <a href="#form">Enquiry</a>
-      <a href="#hours">Hours</a>
-      <a href="#faq">FAQ</a>
-      <a href="tel:8298593107" class="nav-cta"><i class="fas fa-phone-alt"></i> Call Now</a>
-    </ul>
-    <button class="hamburger" id="hamburger"><i class="material-icons">menu</i></button>
-  </nav>
+    <!-- ===== OVERLAY ===== -->
+    <div class="overlay" id="overlay"></div>
 
-  <!-- HERO -->
-  <section class="contact-hero">
-    <div class="hero-shapes"><span></span><span></span></div>
-    <h1>Get in <span>Touch</span></h1>
-    <p>We're here to help – reach out for any Airtel service.</p>
-  </section>
+    <!-- ===== MOBILE NAV ===== -->
+    <div class="mobile-nav" id="mobileNav">
+        <button class="close-btn" id="closeNav"><i class="material-icons">close</i></button>
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="services.html">Services</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="contact.html" class="active">Contact</a>
+        <a href="tel:8298593107" class="nav-cta-mobile"><i class="fas fa-phone-alt"></i> Call Now</a>
+    </div>
 
-  <!-- CONTACT INFO + MAP -->
-  <section class="section" id="contact-info">
-    <div class="grid-2">
-      <div>
-        <div class="glass-card">
-          <h3 style="color:var(--primary);"><i class="fas fa-phone-alt"></i> Contact Information</h3>
-          <div class="info-item"><i class="fas fa-phone-alt"></i> <div><strong>Customer Care</strong><br>8298593107</div></div>
-          <div class="info-item"><i class="fab fa-whatsapp" style="color:#25d366;"></i> <div><strong>WhatsApp</strong><br>8298593107</div></div>
-          <div class="info-item"><i class="fas fa-envelope"></i> <div><strong>Email</strong><br>support@sanjaytelecom.in</div></div>
-          <div class="info-item"><i class="fas fa-map-marker-alt"></i> <div><strong>Location</strong><br>New Delhi, India</div></div>
-          <div style="margin-top:1.5rem; display:flex; gap:0.8rem; flex-wrap:wrap;">
-            <a href="tel:8298593107" class="btn btn-primary"><i class="fas fa-phone-alt"></i> Call Now</a>
-            <a href="https://wa.me/918298593107" class="btn btn-whatsapp"><i class="fab fa-whatsapp"></i> WhatsApp</a>
-          </div>
-          <div class="social-icons">
-            <a href="#"><i class="fab fa-facebook-f"></i></a>
-            <a href="#"><i class="fab fa-instagram"></i></a>
-            <a href="#"><i class="fab fa-youtube"></i></a>
-            <a href="#"><i class="fab fa-twitter"></i></a>
-          </div>
+    <!-- ===== NAVBAR ===== -->
+    <nav class="navbar" id="navbar">
+        <a href="index.html" class="logo">Sanjay<span>Telecom</span></a>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="contact.html" class="active">Contact</a></li>
+        </ul>
+        <div class="nav-right">
+            <a href="tel:8298593107" class="nav-cta ripple"><i class="fas fa-phone-alt"></i> Call Now</a>
+            <button class="hamburger" id="hamburger"><i class="material-icons">menu</i></button>
         </div>
-      </div>
-      <div>
-        <div class="glass-card" style="padding:1.2rem;">
-          <h3 style="color:var(--primary);"><i class="fas fa-map-pin"></i> Find Us</h3>
-          <div class="map-placeholder">
+    </nav>
+
+    <!-- ===== HERO ===== -->
+    <section class="contact-hero">
+        <div class="bg-pattern"><span></span><span></span></div>
+        <h1>Get in <span>Touch</span></h1>
+        <p>We're here to help – reach out for any Airtel service.</p>
+    </section>
+
+    <!-- ===== CONTACT FORM & INFO ===== -->
+    <section class="section">
+        <div class="grid-2">
+            <!-- Contact Form -->
+            <div class="glass-card contact-form reveal">
+                <h3 style="font-size: 1.4rem; margin-bottom: 1.2rem;">Send us a <span style="color: var(--primary);">Message</span></h3>
+                <form id="contactForm" onsubmit="event.preventDefault(); alert('Thank you! We\'ll get back to you soon.');">
+                    <input type="text" placeholder="Full Name *" required />
+                    <input type="tel" placeholder="Phone Number *" required />
+                    <input type="email" placeholder="Email Address" />
+                    <textarea placeholder="Your message about Airtel services..." rows="4"></textarea>
+                    <button type="submit" class="btn btn-primary ripple" style="width:100%; justify-content: center;">
+                        <i class="fas fa-paper-plane"></i> Send Message
+                    </button>
+                </form>
+            </div>
+
+            <!-- Contact Cards -->
+            <div>
+                <div class="glass-card contact-card reveal">
+                    <div class="icon"><i class="fas fa-phone-alt"></i></div>
+                    <h3>Call Us</h3>
+                    <p style="color: var(--gray);">Customer Care</p>
+                    <p style="font-size: 1.2rem; font-weight: 600; color: var(--primary);">8298593107</p>
+                    <a href="tel:8298593107" class="btn btn-primary ripple">Call Now</a>
+                </div>
+                <div class="glass-card contact-card reveal" style="margin-top: 1.5rem;">
+                    <div class="icon"><i class="fab fa-whatsapp" style="color: #25D366;"></i></div>
+                    <h3>WhatsApp</h3>
+                    <p style="color: var(--gray);">Message us anytime</p>
+                    <p style="font-size: 1.2rem; font-weight: 600; color: #25D366;">8298593107</p>
+                    <a href="https://wa.me/918298593107" class="btn btn-whatsapp ripple">WhatsApp Now</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== BUSINESS HOURS ===== -->
+    <section class="section" style="background: var(--light-gray); border-radius: var(--radius-lg); margin: 0 auto 2rem; padding: 4rem 2.4rem; max-width: 1280px;">
+        <div class="section-center">
+            <h2 class="section-title">Business <span>Hours</span></h2>
+            <p class="section-sub">We're available to serve you.</p>
+        </div>
+        <div class="grid-3">
+            <div class="glass-card reveal" style="text-align: center;">
+                <i class="fas fa-calendar-day" style="font-size: 2.2rem; color: var(--primary);"></i>
+                <h3 style="margin-top: 0.5rem;">Monday – Friday</h3>
+                <p style="color: var(--gray); font-size: 1.1rem;">9:00 AM – 8:00 PM</p>
+            </div>
+            <div class="glass-card reveal" style="text-align: center;">
+                <i class="fas fa-calendar-week" style="font-size: 2.2rem; color: var(--primary);"></i>
+                <h3 style="margin-top: 0.5rem;">Saturday</h3>
+                <p style="color: var(--gray); font-size: 1.1rem;">10:00 AM – 6:00 PM</p>
+            </div>
+            <div class="glass-card reveal" style="text-align: center;">
+                <i class="fas fa-calendar-times" style="font-size: 2.2rem; color: var(--primary);"></i>
+                <h3 style="margin-top: 0.5rem;">Sunday</h3>
+                <p style="color: var(--gray); font-size: 1.1rem;">Closed</p>
+                <p style="color: #888; font-size: 0.85rem;">Emergency support via WhatsApp</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== GOOGLE MAP ===== -->
+    <section class="section">
+        <div class="section-center">
+            <h2 class="section-title">Find <span>Us</span></h2>
+            <p class="section-sub">Visit our office for in-person assistance.</p>
+        </div>
+        <div class="map-placeholder reveal">
             <i class="fas fa-map-marked-alt"></i> Google Map – Sanjay Telecom
-          </div>
-          <p style="margin-top:0.8rem; font-size:0.95rem; color:#555;"><i class="fas fa-location-dot" style="color:var(--primary);"></i> 123, Airtel Tower, Connaught Place, New Delhi</p>
         </div>
-        <!-- Location Card -->
-        <div class="glass-card" style="margin-top:1.5rem;">
-          <h3 style="color:var(--primary);"><i class="fas fa-store"></i> Location Card</h3>
-          <p><strong>Sanjay Telecom</strong><br>Authorised Airtel Distributor<br>Near Metro Station, CP<br>New Delhi - 110001</p>
+        <div style="margin-top: 1.2rem; text-align: center; color: var(--gray);">
+            <i class="fas fa-location-dot" style="color: var(--primary);"></i> 123, Airtel Tower, Connaught Place, New Delhi
         </div>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- CONTACT FORM -->
-  <section class="section" id="form">
-    <h2 class="section-title">Send us a <span>Message</span></h2>
-    <div class="grid-2">
-      <div class="glass-card contact-form">
-        <form id="contactForm" onsubmit="event.preventDefault(); alert('Thank you! We\'ll get back to you soon.');">
-          <input type="text" placeholder="Full Name *" required>
-          <input type="tel" placeholder="Phone Number *" required>
-          <input type="email" placeholder="Email Address">
-          <textarea placeholder="Your message about Airtel services..."></textarea>
-          <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;"><i class="fas fa-paper-plane"></i> Send Message</button>
-        </form>
-      </div>
-      <div>
-        <div class="glass-card">
-          <h3 style="color:var(--primary);"><i class="fas fa-clock"></i> Business Hours</h3>
-          <div class="hours-card">
-            <div class="day"><span>Monday – Friday</span> <span>9:00 AM – 8:00 PM</span></div>
-            <div class="day"><span>Saturday</span> <span>10:00 AM – 6:00 PM</span></div>
-            <div class="day"><span>Sunday</span> <span>Closed (Emergency support available)</span></div>
-          </div>
-          <p style="margin-top:1rem; font-size:0.95rem; color:#555;"><i class="fas fa-info-circle" style="color:var(--primary);"></i> 24×7 WhatsApp support for urgent queries.</p>
+    <!-- ===== FAQ ===== -->
+    <section class="section" style="background: var(--light-gray); border-radius: var(--radius-lg); margin: 0 auto 2rem; padding: 4rem 2.4rem; max-width: 1280px;">
+        <div class="section-center">
+            <h2 class="section-title">Frequently <span>Asked</span></h2>
+            <p class="section-sub">Quick answers to common questions.</p>
         </div>
-        <!-- Extra CTA -->
-        <div style="margin-top:1.5rem; background:var(--primary); padding:1.5rem; border-radius:28px; color:#fff; text-align:center;">
-          <h3>Need instant help?</h3>
-          <p style="margin:0.5rem 0;">Call us directly.</p>
-          <a href="tel:8298593107" style="background:#fff; color:var(--primary); padding:0.6rem 2rem; border-radius:40px; text-decoration:none; font-weight:600; display:inline-block;"><i class="fas fa-phone-alt"></i> 8298593107</a>
+        <div class="faq-container" style="max-width: 800px; margin: 0 auto;">
+            <div class="faq-item">
+                <div class="faq-question">What are your customer care hours? <i class="fas fa-plus"></i></div>
+                <div class="faq-answer">Our phone support is available 9 AM – 8 PM, Monday to Saturday. WhatsApp support is available 24×7 for urgent queries.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">How can I apply for a new Airtel connection? <i class="fas fa-plus"></i></div>
+                <div class="faq-answer">You can call us, WhatsApp, or fill the enquiry form above. We'll reach out within 30 minutes.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">Do you offer on-site broadband installation? <i class="fas fa-plus"></i></div>
+                <div class="faq-answer">Yes, we provide free professional installation for all broadband plans at your location.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">Can I visit your office for service? <i class="fas fa-plus"></i></div>
+                <div class="faq-answer">Absolutely! Visit our office at the address shown above during business hours.</div>
+            </div>
         </div>
-      </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer">
+        <div class="footer-grid">
+            <div>
+                <h4 style="color: var(--white);">Sanjay Telecom</h4>
+                <p>Trusted Airtel Distributor</p>
+                <p style="margin-top: 0.8rem;"><i class="fas fa-phone-alt"></i> 8298593107</p>
+                <p><i class="fab fa-whatsapp"></i> 8298593107</p>
+                <div class="social-icons">
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+            <div>
+                <h4>Quick Links</h4>
+                <a href="index.html">Home</a><br>
+                <a href="about.html">About</a><br>
+                <a href="services.html">Services</a><br>
+                <a href="gallery.html">Gallery</a><br>
+                <a href="contact.html">Contact</a>
+            </div>
+            <div>
+                <h4>Business Hours</h4>
+                <p>Mon–Sat: 9:00 AM – 8:00 PM</p>
+                <p>Sunday: Closed</p>
+                <p style="margin-top: 0.5rem; color: #666;">Emergency support via WhatsApp</p>
+            </div>
+            <div>
+                <h4>Visit Us</h4>
+                <div style="background: #1a1a1a; border-radius: var(--radius-sm); padding: 0.8rem; text-align: center; color: #666; font-size: 0.9rem;">
+                    <i class="fas fa-map-pin"></i> Google Map Location
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div>© 2026 Sanjay Telecom. All rights reserved.</div>
+            <div class="footer-dev">Designed &amp; Developed by <a href="#" target="_blank">Web.Smile Financial Solution</a></div>
+        </div>
+    </footer>
+
+    <!-- ===== FLOATING BUTTONS ===== -->
+    <div class="floating">
+        <a href="tel:8298593107" class="call" aria-label="Call"><i class="fas fa-phone-alt"></i></a>
+        <a href="https://wa.me/918298593107" class="whatsapp" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
     </div>
-  </section>
 
-  <!-- FAQ -->
-  <section class="section" id="faq">
-    <h2 class="section-title">Frequently <span>Asked</span></h2>
-    <div class="faq-container">
-      <div class="faq-item"><div class="faq-question">What are your customer care hours? <i class="fas fa-plus"></i></div><div class="faq-answer">Our phone support is available 9 AM – 8 PM, Monday to Saturday. WhatsApp is available 24×7.</div></div>
-      <div class="faq-item"><div class="faq-question">How can I apply for a new Airtel connection? <i class="fas fa-plus"></i></div><div class="faq-answer">You can call us, WhatsApp, or fill the enquiry form above. We'll reach out within 30 minutes.</div></div>
-      <div class="faq-item"><div class="faq-question">Do you offer on-site broadband installation? <i class="fas fa-plus"></i></div><div class="faq-answer">Yes, we provide free professional installation for all broadband plans.</div></div>
-    </div>
-  </section>
+    <!-- ===== SCROLL TOP ===== -->
+    <button id="scrollTop" aria-label="Scroll to top"><i class="fas fa-arrow-up"></i></button>
 
-  <!-- FOOTER -->
-  <footer class="footer" id="contact">
-    <div class="footer-grid">
-      <div><h3 style="color:#fff;">Sanjay Telecom</h3><p>Trusted Airtel Distributor</p><p><i class="fas fa-phone-alt"></i> 8298593107</p><p><i class="fab fa-whatsapp"></i> 8298593107</p></div>
-      <div><h4 style="color:#fff;">Quick Links</h4><a href="#contact-info">Contact</a><br><a href="#form">Enquiry</a><br><a href="#hours">Hours</a><br><a href="#faq">FAQ</a></div>
-      <div><h4 style="color:#fff;">Follow</h4><a href="#"><i class="fab fa-facebook"></i> Facebook</a><br><a href="#"><i class="fab fa-instagram"></i> Instagram</a><br><a href="#"><i class="fab fa-youtube"></i> YouTube</a></div>
-      <div><h4 style="color:#fff;">Visit</h4><div style="background:#2a2a2a;border-radius:16px;padding:0.6rem;text-align:center;color:#888;"><i class="fas fa-map-pin"></i> Google Map</div></div>
-    </div>
-    <div class="footer-bottom">
-      <div>© 2026 Sanjay Telecom. All rights reserved.</div>
-      <div class="footer-dev">Designed &amp; Developed by <a href="#" target="_blank">Web.Smile Financial Solution</a></div>
-    </div>
-  </footer>
+    <!-- ===== JAVASCRIPT ===== -->
+    <script>
+        (function() {
+            'use strict';
 
-  <!-- FLOATING -->
-  <div class="floating">
-    <a href="tel:8298593107" class="call"><i class="fas fa-phone-alt"></i></a>
-    <a href="https://wa.me/918298593107" class="whatsapp"><i class="fab fa-whatsapp"></i></a>
-  </div>
+            // ---- LOADER ----
+            window.addEventListener('load', function() {
+                document.getElementById('loader').classList.add('hide');
+            });
 
-  <script>
-    (function() {
-      // loader
-      window.addEventListener('load', ()=> document.getElementById('loader').classList.add('hide'));
+            // ---- PROGRESS BAR ----
+            window.addEventListener('scroll', function() {
+                const scrollTop = window.scrollY;
+                const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+                const progress = (scrollTop / docHeight) * 100;
+                document.getElementById('progress-bar').style.width = progress + '%';
+            });
 
-      // mobile nav
-      const hamburger = document.getElementById('hamburger');
-      const mobileNav = document.getElementById('mobileNav');
-      const overlay = document.getElementById('overlay');
-      const closeNav = document.getElementById('closeNav');
-      function toggleNav(open) {
-        mobileNav.classList.toggle('open', open);
-        overlay.classList.toggle('active', open);
-        document.body.style.overflow = open ? 'hidden' : '';
-      }
-      hamburger.addEventListener('click', ()=> toggleNav(true));
-      closeNav.addEventListener('click', ()=> toggleNav(false));
-      overlay.addEventListener('click', ()=> toggleNav(false));
+            // ---- NAVBAR SCROLL EFFECT ----
+            const navbar = document.getElementById('navbar');
+            window.addEventListener('scroll', function() {
+                navbar.classList.toggle('scrolled', window.scrollY > 20);
+            });
 
-      // FAQ accordion
-      document.querySelectorAll('.faq-question').forEach(q => {
-        q.addEventListener('click', function() {
-          const item = this.parentElement;
-          const isOpen = item.classList.contains('open');
-          document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
-          if (!isOpen) item.classList.add('open');
-        });
-      });
-    })();
-  </script>
+            // ---- MOBILE NAV ----
+            const hamburger = document.getElementById('hamburger');
+            const mobileNav = document.getElementById('mobileNav');
+            const overlay = document.getElementById('overlay');
+            const closeNav = document.getElementById('closeNav');
+
+            function toggleNav(open) {
+                mobileNav.classList.toggle('open', open);
+                overlay.classList.toggle('active', open);
+                document.body.style.overflow = open ? 'hidden' : '';
+            }
+            hamburger.addEventListener('click', function() { toggleNav(true); });
+            closeNav.addEventListener('click', function() { toggleNav(false); });
+            overlay.addEventListener('click', function() { toggleNav(false); });
+
+            // ---- SCROLL TOP ----
+            const scrollBtn = document.getElementById('scrollTop');
+            window.addEventListener('scroll', function() {
+                scrollBtn.classList.toggle('visible', window.scrollY > 400);
+            });
+            scrollBtn.addEventListener('click', function() {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+
+            // ---- FAQ ACCORDION ----
+            document.querySelectorAll('.faq-question').forEach(function(q) {
+                q.addEventListener('click', function() {
+                    const item = this.parentElement;
+                    const isOpen = item.classList.contains('open');
+                    document.querySelectorAll('.faq-item').forEach(function(i) { i.classList.remove('open'); });
+                    if (!isOpen) item.classList.add('open');
+                });
+            });
+
+            // ---- SCROLL REVEAL ----
+            const revealElements = document.querySelectorAll('.reveal');
+
+            function checkReveal() {
+                revealElements.forEach(function(el) {
+                    const rect = el.getBoundingClientRect();
+                    if (rect.top < window.innerHeight - 60) el.classList.add('visible');
+                });
+            }
+            window.addEventListener('scroll', checkReveal);
+            window.addEventListener('load', function() { setTimeout(checkReveal, 300); });
+
+            // ---- RIPPLE EFFECT ----
+            document.querySelectorAll('.ripple').forEach(function(btn) {
+                btn.addEventListener('click', function(e) {
+                    const ripple = document.createElement('span');
+                    const rect = this.getBoundingClientRect();
+                    const size = Math.max(rect.width, rect.height);
+                    const x = e.clientX - rect.left - size / 2;
+                    const y = e.clientY - rect.top - size / 2;
+                    ripple.style.cssText =
+                        'position:absolute; border-radius:50%; background:rgba(255,255,255,0.3); width:' +
+                        size + 'px; height:' + size + 'px; left:' + x + 'px; top:' + y +
+                        'px; pointer-events:none; transform:scale(0); animation:rippleAnim 0.5s ease-out;';
+                    this.style.position = 'relative';
+                    this.style.overflow = 'hidden';
+                    this.appendChild(ripple);
+                    setTimeout(function() { ripple.remove(); }, 600);
+                });
+            });
+
+        })();
+    </script>
 </body>
 </html>
