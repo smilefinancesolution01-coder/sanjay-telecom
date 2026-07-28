@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+  <title>About Us – Sanjay Telecom | Airtel Distributor</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Roboto, system-ui, sans-serif;
+    }
+    body {
+      background: #fafafa;
+      color: #1e1e1e;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+    }
+    :root {
+      --primary: #e60000;
+      --primary-dark: #b30000;
+      --secondary: #1a1a1a;
+      --white: #ffffff;
+      --glass: rgba(255,255,255,0.72);
+      --shadow: 0 16px 40px rgba(0,0,0,0.06);
+    }
+
+    /* LOADER */
+    #loader {
+      position: fixed;
+      inset: 0;
+      background: #1a1a1a;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      transition: opacity 0.7s ease;
+    }
+    #loader.hide { opacity: 0; pointer-events: none; }
+    .loader-ring {
+      width: 56px;
+      height: 56px;
+      border: 6px solid #2a2a2a;
+      border-top: 6px solid var(--primary);
+      border-radius: 50%;
+      animation: spin 0.9s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* NAVBAR */
+    .navbar {
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(8px);
+      padding: 0.7rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 4px 18px rgba(0,0,0,0.03);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    .logo {
+      font-size: 1.9rem;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      color: var(--secondary);
+    }
+    .logo span { color: var(--primary); }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      list-style: none;
+    }
+    .nav-links a {
+      text-decoration: none;
+      color: #222;
+      font-weight: 500;
+      transition: 0.2s;
+      position: relative;
+    }
+    .nav-links a:hover { color: var(--primary); }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--primary);
+      transition: 0.25s;
+    }
+    .nav-links a:hover::after { width: 100%; }
+    .nav-cta {
+      background: var(--primary);
+      color: #fff !important;
+      padding: 0.5rem 1.5rem;
+      border-radius: 40px;
+      font-weight: 600;
+    }
+    .nav-cta:hover { background: var(--primary-dark); transform: scale(1.02); }
+    .nav-cta::after { display: none; }
+    .hamburger {
+      display: none;
+      font-size: 2rem;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--secondary);
+    }
+
+    /* mobile nav */
+    .mobile-nav {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 280px;
+      height: 100vh;
+      background: var(--white);
+      box-shadow: -8px 0 30px rgba(0,0,0,0.06);
+      padding: 2rem 1.5rem;
+      transition: 0.35s cubic-bezier(0.23,1,0.32,1);
+      z-index: 2000;
+      display: flex;
+      flex-direction: column;
+      gap: 1.6rem;
+    }
+    .mobile-nav.open { right: 0; }
+    .mobile-nav a {
+      text-decoration: none;
+      font-size: 1.15rem;
+      font-weight: 500;
+      color: #1a1a1a;
+      border-bottom: 1px solid #eee;
+      padding: 0.6rem 0;
+    }
+    .mobile-nav .close-btn {
+      align-self: flex-end;
+      font-size: 2.2rem;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+    .overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.2);
+      backdrop-filter: blur(2px);
+      z-index: 1500;
+      opacity: 0;
+      pointer-events: none;
+      transition: 0.3s;
+    }
+    .overlay.active { opacity: 1; pointer-events: auto; }
+
+    /* HERO */
+    .about-hero {
+      background: linear-gradient(135deg, #1a1a1a 0%, #2d0a0a 100%);
+      padding: 4rem 2rem;
+      text-align: center;
+      color: #fff;
+      position: relative;
+      overflow: hidden;
+    }
+    .about-hero h1 {
+      font-size: clamp(2.6rem, 8vw, 4.2rem);
+      font-weight: 800;
+    }
+    .about-hero h1 span { color: var(--primary); }
+    .about-hero p {
+      max-width: 680px;
+      margin: 1.2rem auto 0;
+      opacity: 0.8;
+      font-size: 1.15rem;
+    }
+    .hero-shapes {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+    .hero-shapes span {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(230,0,0,0.08);
+      animation: float 20s infinite alternate ease-in-out;
+    }
+    .hero-shapes span:nth-child(1) { width: 300px; height: 300px; top: -80px; right: -40px; }
+    .hero-shapes span:nth-child(2) { width: 200px; height: 200px; bottom: 20px; left: -60px; animation-duration: 26s; }
+    @keyframes float {
+      0% { transform: translate(0,0) scale(1); }
+      100% { transform: translate(20px,-30px) scale(1.08); }
+    }
+
+    /* section */
+    .section {
+      padding: 4rem 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .section-title {
+      font-size: 2.4rem;
+      font-weight: 700;
+      margin-bottom: 0.8rem;
+      letter-spacing: -0.5px;
+    }
+    .section-title span { color: var(--primary); }
+    .section-sub {
+      color: #555;
+      margin-bottom: 2.8rem;
+      font-size: 1.05rem;
+    }
+
+    /* glass cards */
+    .glass-card {
+      background: var(--glass);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      border-radius: 28px;
+      padding: 2rem 1.6rem;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(255,255,255,0.25);
+      transition: all 0.3s ease;
+    }
+    .glass-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 28px 48px rgba(0,0,0,0.06);
+      background: rgba(255,255,255,0.85);
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 2rem;
+    }
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 2rem;
+    }
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1.8rem;
+    }
+
+    .stat-number {
+      font-size: 2.8rem;
+      font-weight: 800;
+      color: var(--primary);
+    }
+
+    .team-card {
+      text-align: center;
+      padding: 1.8rem 1rem;
+    }
+    .team-card i {
+      font-size: 4rem;
+      color: var(--primary);
+      background: #f0f0f0;
+      padding: 1rem;
+      border-radius: 60px;
+      margin-bottom: 1rem;
+    }
+
+    .timeline-item {
+      display: flex;
+      gap: 1.2rem;
+      margin-bottom: 1.8rem;
+      align-items: flex-start;
+    }
+    .timeline-year {
+      font-weight: 700;
+      color: var(--primary);
+      font-size: 1.4rem;
+      min-width: 80px;
+    }
+    .timeline-desc { color: #333; }
+
+    .cta-red {
+      background: var(--primary);
+      color: #fff;
+      padding: 3.5rem 2rem;
+      border-radius: 40px;
+      text-align: center;
+      margin: 2rem auto;
+      max-width: 1100px;
+    }
+    .cta-red h2 { font-size: 2.4rem; }
+    .cta-red .btn {
+      background: #fff;
+      color: var(--primary);
+      padding: 0.8rem 2.4rem;
+      border-radius: 50px;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      transition: 0.2s;
+    }
+    .cta-red .btn:hover { background: #f0f0f0; transform: scale(1.02); }
+
+    /* footer */
+    .footer {
+      background: #111;
+      color: #ccc;
+      padding: 3rem 2rem 1.2rem;
+      margin-top: 3rem;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(170px,1fr));
+      gap: 2.2rem;
+      max-width: 1200px;
+      margin: auto;
+    }
+    .footer a { color: #ccc; text-decoration: none; }
+    .footer a:hover { color: #fff; }
+    .footer-bottom {
+      border-top: 1px solid #2a2a2a;
+      margin-top: 2.4rem;
+      padding-top: 1.6rem;
+      text-align: center;
+      font-size: 0.95rem;
+    }
+    .footer-dev a {
+      color: #fff;
+      font-weight: 500;
+    }
+    .footer-dev a:hover { color: var(--primary); }
+
+    /* floating */
+    .floating {
+      position: fixed;
+      bottom: 1.8rem;
+      right: 1.8rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.9rem;
+      z-index: 900;
+    }
+    .floating a {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      color: #fff;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.18);
+      transition: 0.2s;
+      text-decoration: none;
+    }
+    .floating a:hover { transform: scale(1.08); }
+    .floating .call { background: var(--primary); }
+    .floating .whatsapp { background: #25d366; }
+
+    /* responsive */
+    @media (max-width: 768px) {
+      .navbar { padding: 0.6rem 1rem; }
+      .nav-links { display: none; }
+      .hamburger { display: block; }
+      .section { padding: 2.5rem 1rem; }
+      .about-hero { padding: 2.8rem 1rem; }
+    }
+    @media (max-width: 480px) {
+      .stat-number { font-size: 2.2rem; }
+      .timeline-item { flex-direction: column; gap: 0.2rem; }
+    }
+  </style>
+</head>
+<body>
+  <!-- LOADER -->
+  <div id="loader"><div class="loader-ring"></div></div>
+
+  <!-- OVERLAY & MOBILE NAV -->
+  <div class="overlay" id="overlay"></div>
+  <div class="mobile-nav" id="mobileNav">
+    <button class="close-btn" id="closeNav"><i class="material-icons">close</i></button>
+    <a href="#story">Our Story</a>
+    <a href="#mission">Mission & Vision</a>
+    <a href="#team">Team</a>
+    <a href="#timeline">Timeline</a>
+    <a href="#contact">Contact</a>
+    <a href="tel:8298593107" style="color:var(--primary);font-weight:700;"><i class="fas fa-phone-alt"></i> Call Now</a>
+  </div>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="logo">Sanjay<span>Telecom</span></div>
+    <ul class="nav-links">
+      <a href="#story">About</a>
+      <a href="#mission">Mission</a>
+      <a href="#team">Team</a>
+      <a href="#timeline">Timeline</a>
+      <a href="#contact" class="nav-cta"><i class="fas fa-phone-alt"></i> Call Now</a>
+    </ul>
+    <button class="hamburger" id="hamburger"><i class="material-icons">menu</i></button>
+  </nav>
+
+  <!-- HERO -->
+  <section class="about-hero">
+    <div class="hero-shapes"><span></span><span></span></div>
+    <h1>About <span>Sanjay Telecom</span></h1>
+    <p>Trusted Airtel Distributor · Empowering connections since 2016</p>
+  </section>
+
+  <!-- STORY + MISSION / VISION -->
+  <section class="section" id="story">
+    <div class="grid-2">
+      <div class="glass-card">
+        <h2 style="color:var(--primary);">Our Story</h2>
+        <p style="margin-top:0.8rem;line-height:1.6;">Sanjay Telecom started with a simple vision: to bring seamless telecom solutions to every doorstep. As an authorised Airtel distributor, we have served over 1,200+ customers, providing SIM activation, broadband, DTH, and corporate plans with unwavering reliability. Our journey is powered by trust, speed, and a passion for connectivity.</p>
+        <div style="margin-top:1.5rem;background:#f0f0f0;padding:1rem;border-radius:16px;display:flex;gap:1.5rem;flex-wrap:wrap;">
+          <span><strong>📍</strong> Pan-India service</span>
+          <span><strong>⚡</strong> 2hr activation</span>
+          <span><strong>🏆</strong> Airtel Platinum Partner</span>
+        </div>
+      </div>
+      <div class="glass-card" id="mission">
+        <h2 style="color:var(--primary);">Mission &amp; Vision</h2>
+        <div style="margin-top:1rem;">
+          <h3><i class="fas fa-bullseye" style="color:var(--primary);"></i> Mission</h3>
+          <p>To deliver fast, affordable, and reliable Airtel services with a human touch, ensuring every customer stays connected.</p>
+        </div>
+        <div style="margin-top:1.4rem;">
+          <h3><i class="fas fa-eye" style="color:var(--primary);"></i> Vision</h3>
+          <p>To be the most trusted telecom partner in India, bridging gaps with technology and integrity.</p>
+        </div>
+        <div style="margin-top:1.4rem;background:rgba(230,0,0,0.04);padding:0.8rem 1rem;border-radius:16px;">
+          <i class="fas fa-quote-left" style="color:var(--primary);"></i> <em>“We don't just sell connections; we build relationships.”</em>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY CUSTOMERS TRUST US + STATS -->
+  <section class="section" style="background:#f4f4f4;border-radius:40px;margin:0 auto 2rem;">
+    <h2 class="section-title">Why <span>Customers Trust Us</span></h2>
+    <div class="grid-3">
+      <div class="glass-card"><i class="fas fa-clock" style="font-size:2.2rem;color:var(--primary);"></i><h3>Same-day Activation</h3><p>SIM & broadband activated within 2 hours.</p></div>
+      <div class="glass-card"><i class="fas fa-handshake" style="font-size:2.2rem;color:var(--primary);"></i><h3>Authorised Partner</h3><p>Direct Airtel distributor with genuine plans.</p></div>
+      <div class="glass-card"><i class="fas fa-headset" style="font-size:2.2rem;color:var(--primary);"></i><h3>24×7 Support</h3><p>We're always here to help, day or night.</p></div>
+    </div>
+
+    <!-- animated stats -->
+    <div style="margin-top:3rem;">
+      <div class="grid-4" id="statsSection">
+        <div class="glass-card" style="text-align:center;"><div class="stat-number" id="stat1">0</div><p>Customers Served</p></div>
+        <div class="glass-card" style="text-align:center;"><div class="stat-number" id="stat2">0</div><p>SIM Activated</p></div>
+        <div class="glass-card" style="text-align:center;"><div class="stat-number" id="stat3">0</div><p>Happy Clients</p></div>
+        <div class="glass-card" style="text-align:center;"><div class="stat-number" id="stat4">0</div><p>Years Experience</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TEAM -->
+  <section class="section" id="team">
+    <h2 class="section-title">Our <span>Team</span></h2>
+    <p class="section-sub">Passionate professionals dedicated to your connectivity.</p>
+    <div class="grid-3">
+      <div class="glass-card team-card"><i class="fas fa-user-tie"></i><h3>Sanjay Sharma</h3><p>Founder &amp; CEO</p><p style="font-size:0.9rem;color:#555;">15+ years in telecom</p></div>
+      <div class="glass-card team-card"><i class="fas fa-user-circle"></i><h3>Priya Verma</h3><p>Operations Head</p><p style="font-size:0.9rem;color:#555;">Customer experience expert</p></div>
+      <div class="glass-card team-card"><i class="fas fa-user-cog"></i><h3>Rahul Singh</h3><p>Technical Lead</p><p style="font-size:0.9rem;color:#555;">Broadband &amp; DTH specialist</p></div>
+    </div>
+  </section>
+
+  <!-- TIMELINE & ACHIEVEMENTS -->
+  <section class="section" id="timeline">
+    <h2 class="section-title">Our <span>Journey</span></h2>
+    <div class="grid-2">
+      <div>
+        <div class="timeline-item"><span class="timeline-year">2016</span><div class="timeline-desc"><strong>Founded</strong> – Sanjay Telecom begins as a small retail outlet.</div></div>
+        <div class="timeline-item"><span class="timeline-year">2018</span><div class="timeline-desc"><strong>Airtel Authorised</strong> – Became official Airtel distributor.</div></div>
+        <div class="timeline-item"><span class="timeline-year">2020</span><div class="timeline-desc"><strong>Expansion</strong> – Launched broadband &amp; DTH services.</div></div>
+        <div class="timeline-item"><span class="timeline-year">2024</span><div class="timeline-desc"><strong>1000+</strong> customers served across India.</div></div>
+      </div>
+      <div>
+        <div class="glass-card"><h3 style="color:var(--primary);">🏆 Achievements</h3><ul style="list-style:none;margin-top:0.8rem;line-height:2;">
+          <li><i class="fas fa-check-circle" style="color:var(--primary);"></i> Airtel Platinum Partner</li>
+          <li><i class="fas fa-check-circle" style="color:var(--primary);"></i> 98% customer satisfaction</li>
+          <li><i class="fas fa-check-circle" style="color:var(--primary);"></i> Fastest activation in region</li>
+          <li><i class="fas fa-check-circle" style="color:var(--primary);"></i> 500+ business connections</li>
+        </ul></div>
+        <div style="margin-top:1.5rem;background:#f0f0f0;padding:1.2rem;border-radius:24px;">
+          <p><i class="fas fa-store-alt" style="color:var(--primary);"></i> <strong>Airtel Distributor</strong> – Authorised reseller for all Airtel services including prepaid, postpaid, broadband, DTH, and enterprise solutions.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- OWNER MESSAGE -->
+  <section class="section">
+    <div class="glass-card" style="padding:2.5rem;background:rgba(230,0,0,0.03);border:1px solid rgba(230,0,0,0.08);">
+      <div style="display:flex;gap:1.2rem;flex-wrap:wrap;align-items:center;">
+        <i class="fas fa-user-circle" style="font-size:4rem;color:var(--primary);"></i>
+        <div><h3 style="color:var(--primary);">Owner’s Message</h3>
+        <p style="max-width:700px;font-size:1.05rem;">“At Sanjay Telecom, we believe every connection matters. Our team works tirelessly to ensure you get the best Airtel experience – from seamless activation to dedicated support. Thank you for trusting us.”</p>
+        <p style="margin-top:0.6rem;">— Sanjay Sharma</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <div class="cta-red">
+    <h2>Let’s Connect You Today</h2>
+    <p style="margin:0.8rem 0 1.8rem;opacity:0.9;">Reach out for new SIM, porting, broadband or business plans.</p>
+    <a href="tel:8298593107" class="btn"><i class="fas fa-phone-alt"></i> Call Now</a>
+    <a href="https://wa.me/918298593107" class="btn" style="background:#25d366;color:#fff;margin-left:0.8rem;"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer" id="contact">
+    <div class="footer-grid">
+      <div><h3 style="color:#fff;">Sanjay Telecom</h3><p>Trusted Airtel Distributor</p><p><i class="fas fa-phone-alt"></i> 8298593107</p><p><i class="fab fa-whatsapp"></i> 8298593107</p></div>
+      <div><h4 style="color:#fff;">Quick Links</h4><a href="#story">About</a><br><a href="#mission">Mission</a><br><a href="#team">Team</a><br><a href="#timeline">Timeline</a></div>
+      <div><h4 style="color:#fff;">Follow</h4><a href="#"><i class="fab fa-facebook"></i> Facebook</a><br><a href="#"><i class="fab fa-instagram"></i> Instagram</a><br><a href="#"><i class="fab fa-youtube"></i> YouTube</a></div>
+      <div><h4 style="color:#fff;">Visit</h4><div style="background:#2a2a2a;border-radius:16px;padding:0.6rem;text-align:center;color:#888;"><i class="fas fa-map-pin"></i> Google Map</div></div>
+    </div>
+    <div class="footer-bottom">
+      <div>© 2026 Sanjay Telecom. All rights reserved.</div>
+      <div class="footer-dev">Designed &amp; Developed by <a href="#" target="_blank">Web.Smile Financial Solution</a></div>
+    </div>
+  </footer>
+
+  <!-- FLOATING -->
+  <div class="floating">
+    <a href="tel:8298593107" class="call"><i class="fas fa-phone-alt"></i></a>
+    <a href="https://wa.me/918298593107" class="whatsapp"><i class="fab fa-whatsapp"></i></a>
+  </div>
+
+  <script>
+    (function() {
+      // LOADER
+      window.addEventListener('load', ()=> document.getElementById('loader').classList.add('hide'));
+
+      // MOBILE NAV
+      const hamburger = document.getElementById('hamburger');
+      const mobileNav = document.getElementById('mobileNav');
+      const overlay = document.getElementById('overlay');
+      const closeNav = document.getElementById('closeNav');
+      function toggleNav(open) {
+        mobileNav.classList.toggle('open', open);
+        overlay.classList.toggle('active', open);
+        document.body.style.overflow = open ? 'hidden' : '';
+      }
+      hamburger.addEventListener('click', ()=> toggleNav(true));
+      closeNav.addEventListener('click', ()=> toggleNav(false));
+      overlay.addEventListener('click', ()=> toggleNav(false));
+
+      // COUNTER ANIMATION
+      const stats = [
+        { el: document.getElementById('stat1'), target: 1280 },
+        { el: document.getElementById('stat2'), target: 940 },
+        { el: document.getElementById('stat3'), target: 1100 },
+        { el: document.getElementById('stat4'), target: 9 }
+      ];
+      let animated = false;
+      function animateStats() {
+        if (animated) return;
+        const rect = document.getElementById('statsSection').getBoundingClientRect();
+        if (rect.top < window.innerHeight && rect.bottom >= 0) {
+          animated = true;
+          stats.forEach((s) => {
+            let current = 0;
+            const step = Math.ceil(s.target / 60);
+            const interval = setInterval(() => {
+              current += step;
+              if (current >= s.target) { current = s.target; clearInterval(interval); }
+              s.el.textContent = current;
+            }, 25);
+          });
+        }
+      }
+      window.addEventListener('scroll', animateStats);
+      window.addEventListener('load', ()=> setTimeout(animateStats, 500));
+    })();
+  </script>
+</body>
+</html>
