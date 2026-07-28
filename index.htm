@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,46 +8,78 @@
     <meta property="og:title" content="Sanjay Telecom – Airtel Distributor" />
     <meta property="og:description" content="Authorized Airtel partner. SIM, broadband, DTH, recharge & more. Premium telecom services." />
     <meta property="og:type" content="website" />
-    <link rel="icon" href="#" />
+    <meta property="og:url" content="https://sanjaytelecom.com" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://sanjaytelecom.com" />
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📡</text></svg>" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
     <style>
-        /* ----- RESET & VARIABLES ----- */
+        /* ===== CSS VARIABLES ===== */
+        :root {
+            --primary: #E60012;
+            --primary-dark: #b3000e;
+            --primary-light: #ff1a2e;
+            --black: #0a0a0a;
+            --dark: #1a1a1a;
+            --gray-dark: #2d2d2d;
+            --gray: #555555;
+            --gray-light: #888888;
+            --light-gray: #f5f5f7;
+            --off-white: #fafafa;
+            --white: #ffffff;
+            --glass: rgba(255, 255, 255, 0.72);
+            --glass-dark: rgba(10, 10, 10, 0.6);
+            --shadow-sm: 0 4px 20px rgba(0, 0, 0, 0.04);
+            --shadow-md: 0 12px 40px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 24px 60px rgba(0, 0, 0, 0.08);
+            --radius-sm: 12px;
+            --radius-md: 20px;
+            --radius-lg: 32px;
+            --radius-xl: 40px;
+            --transition: 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        /* ===== RESET & BASE ===== */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-        }
-        :root {
-            --primary: #E60012;
-            --primary-dark: #b3000e;
-            --black: #111111;
-            --dark-gray: #1e1e1e;
-            --gray: #3a3a3a;
-            --light-gray: #f5f5f7;
-            --white: #ffffff;
-            --glass: rgba(255, 255, 255, 0.72);
-            --shadow: 0 20px 50px rgba(0, 0, 0, 0.06);
-            --radius: 28px;
-            --transition: 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
         html {
             scroll-behavior: smooth;
+            -webkit-tap-highlight-color: transparent;
         }
         body {
-            background: var(--white);
-            color: var(--black);
+            font-family: var(--font-family);
+            background: var(--off-white);
+            color: var(--dark);
             line-height: 1.6;
             -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
             overflow-x: hidden;
         }
         img {
             max-width: 100%;
+            height: auto;
             display: block;
         }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        button {
+            cursor: pointer;
+            border: none;
+            background: none;
+            font-family: inherit;
+        }
+        ul {
+            list-style: none;
+        }
 
-        /* ----- LOADER ----- */
+        /* ===== LOADER ===== */
         #loader {
             position: fixed;
             inset: 0;
@@ -62,12 +93,13 @@
         #loader.hide {
             opacity: 0;
             visibility: hidden;
+            pointer-events: none;
         }
         .loader-ring {
-            width: 56px;
-            height: 56px;
-            border: 5px solid #2a2a2a;
-            border-top: 5px solid var(--primary);
+            width: 60px;
+            height: 60px;
+            border: 4px solid rgba(255, 255, 255, 0.08);
+            border-top: 4px solid var(--primary);
             border-radius: 50%;
             animation: spin 0.9s linear infinite;
         }
@@ -77,7 +109,7 @@
             }
         }
 
-        /* ----- SCROLL PROGRESS ----- */
+        /* ===== SCROLL PROGRESS ===== */
         #progress-bar {
             position: fixed;
             top: 0;
@@ -86,34 +118,32 @@
             background: var(--primary);
             z-index: 9998;
             width: 0%;
-            transition: width 0.1s linear;
+            transition: width 0.08s linear;
         }
 
-        /* ----- NAVBAR ----- */
+        /* ===== NAVBAR ===== */
         .navbar {
             position: sticky;
             top: 0;
             z-index: 1000;
-            background: rgba(255, 255, 255, 0.78);
-            backdrop-filter: blur(16px) saturate(180%);
-            -webkit-backdrop-filter: blur(16px) saturate(180%);
+            background: rgba(255, 255, 255, 0.82);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
             border-bottom: 1px solid rgba(0, 0, 0, 0.04);
-            padding: 0.9rem 2.2rem;
+            padding: 0.8rem 2.4rem;
             display: flex;
             align-items: center;
             justify-content: space-between;
             transition: var(--transition);
         }
-        .nav-left {
-            display: flex;
-            align-items: center;
+        .navbar.scrolled {
+            box-shadow: var(--shadow-sm);
         }
         .logo {
-            font-size: 1.7rem;
+            font-size: 1.6rem;
             font-weight: 700;
             letter-spacing: -0.5px;
             color: var(--black);
-            text-decoration: none;
             display: flex;
             align-items: center;
             gap: 4px;
@@ -121,79 +151,68 @@
         .logo span {
             color: var(--primary);
         }
-        .nav-center {
+        .nav-links {
             display: flex;
             align-items: center;
-            gap: 2.5rem;
-            list-style: none;
+            gap: 2.2rem;
         }
-        .nav-center a {
-            text-decoration: none;
-            color: var(--dark-gray);
-            font-weight: 500;
+        .nav-links a {
             font-size: 0.95rem;
+            font-weight: 500;
+            color: var(--gray-dark);
             transition: var(--transition);
             position: relative;
             letter-spacing: -0.2px;
         }
-        .nav-center a:hover {
+        .nav-links a:hover {
             color: var(--primary);
         }
-        .nav-center a::after {
+        .nav-links a::after {
             content: '';
             position: absolute;
             bottom: -4px;
             left: 0;
-            width: 0%;
+            width: 0;
             height: 2px;
             background: var(--primary);
             transition: var(--transition);
         }
-        .nav-center a:hover::after {
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
             width: 100%;
         }
-        .nav-center a.active {
+        .nav-links a.active {
             color: var(--primary);
-        }
-        .nav-center a.active::after {
-            width: 100%;
-        }
-        .nav-right {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
         }
         .nav-cta {
             background: var(--primary);
             color: var(--white) !important;
-            padding: 0.55rem 1.6rem;
-            border-radius: 40px;
+            padding: 0.5rem 1.6rem;
+            border-radius: 50px;
             font-weight: 600;
-            text-decoration: none;
             font-size: 0.9rem;
             transition: var(--transition);
             display: flex;
             align-items: center;
             gap: 8px;
             border: none;
-            cursor: pointer;
         }
         .nav-cta:hover {
             background: var(--primary-dark);
-            transform: scale(1.02);
+            transform: translateY(-2px);
             box-shadow: 0 8px 24px rgba(230, 0, 18, 0.25);
+        }
+        .nav-cta::after {
+            display: none;
         }
         .hamburger {
             display: none;
-            background: none;
-            border: none;
-            font-size: 1.9rem;
-            color: var(--black);
-            cursor: pointer;
+            font-size: 1.8rem;
+            color: var(--dark);
             padding: 4px;
         }
 
-        /* ----- MOBILE NAV ----- */
+        /* ===== MOBILE NAV ===== */
         .mobile-nav {
             position: fixed;
             top: 0;
@@ -207,7 +226,8 @@
             z-index: 2000;
             display: flex;
             flex-direction: column;
-            gap: 1.8rem;
+            gap: 1.6rem;
+            overflow-y: auto;
         }
         .mobile-nav.open {
             right: 0;
@@ -215,16 +235,12 @@
         .mobile-nav .close-btn {
             align-self: flex-end;
             font-size: 2.2rem;
-            background: none;
-            border: none;
-            cursor: pointer;
-            color: var(--dark-gray);
+            color: var(--dark);
         }
         .mobile-nav a {
-            text-decoration: none;
-            font-size: 1.2rem;
+            font-size: 1.15rem;
             font-weight: 500;
-            color: var(--black);
+            color: var(--dark);
             padding: 0.6rem 0;
             border-bottom: 1px solid #f0f0f0;
             transition: var(--transition);
@@ -233,27 +249,24 @@
             color: var(--primary);
             padding-left: 6px;
         }
-        .mobile-nav a:last-child {
-            border-bottom: none;
-        }
         .mobile-nav .nav-cta-mobile {
-            margin-top: 1rem;
+            margin-top: 0.5rem;
             background: var(--primary);
-            color: var(--white) !important;
+            color: var(--white);
             padding: 0.8rem 1.8rem;
-            border-radius: 40px;
+            border-radius: 50px;
             text-align: center;
             font-weight: 600;
-            border-bottom: none !important;
+            border-bottom: none;
         }
         .mobile-nav .nav-cta-mobile:hover {
             background: var(--primary-dark);
-            padding-left: 1.8rem !important;
+            padding-left: 1.8rem;
         }
         .overlay {
             position: fixed;
             inset: 0;
-            background: rgba(0, 0, 0, 0.2);
+            background: rgba(0, 0, 0, 0.25);
             backdrop-filter: blur(4px);
             z-index: 1500;
             opacity: 0;
@@ -265,125 +278,32 @@
             pointer-events: auto;
         }
 
-        /* ----- HERO SLIDER ----- */
-        .hero-slider {
-            position: relative;
-            height: 85vh;
-            min-height: 520px;
-            overflow: hidden;
-            background: #0a0a0a;
-        }
-        .hero-slide {
-            position: absolute;
-            inset: 0;
-            opacity: 0;
-            transition: opacity 0.8s ease;
-            display: flex;
-            align-items: center;
-            padding: 0 2rem;
-            background: linear-gradient(145deg, #0a0a0a 0%, #1a1a1a 100%);
-        }
-        .hero-slide.active {
-            opacity: 1;
-        }
-        .hero-slide .shapes {
-            position: absolute;
-            inset: 0;
-            pointer-events: none;
-            overflow: hidden;
-        }
-        .hero-slide .shapes span {
-            position: absolute;
-            border-radius: 50%;
-            background: rgba(230, 0, 18, 0.06);
-            animation: float 24s infinite alternate ease-in-out;
-        }
-        .hero-slide .shapes span:nth-child(1) {
-            width: 400px;
-            height: 400px;
-            top: -140px;
-            right: -80px;
-        }
-        .hero-slide .shapes span:nth-child(2) {
-            width: 260px;
-            height: 260px;
-            bottom: -60px;
-            left: -60px;
-            animation-duration: 30s;
-            background: rgba(230, 0, 18, 0.04);
-        }
-        .hero-slide .shapes span:nth-child(3) {
-            width: 160px;
-            height: 160px;
-            top: 30%;
-            left: 20%;
-            animation-duration: 18s;
-            background: rgba(255, 255, 255, 0.02);
-        }
-        @keyframes float {
-            0% {
-                transform: translate(0, 0) scale(1);
-            }
-            100% {
-                transform: translate(30px, -40px) scale(1.06);
-            }
-        }
-        .hero-content {
-            position: relative;
-            z-index: 2;
-            max-width: 720px;
-        }
-        .hero-content h1 {
-            font-size: clamp(2.8rem, 8vw, 5.2rem);
-            font-weight: 800;
-            letter-spacing: -1.5px;
-            color: var(--white);
-        }
-        .hero-content h1 span {
-            color: var(--primary);
-        }
-        .hero-content .sub {
-            font-size: 1.4rem;
-            font-weight: 400;
-            color: rgba(255, 255, 255, 0.8);
-            margin-top: 0.4rem;
-        }
-        .hero-content p {
-            color: rgba(255, 255, 255, 0.7);
-            font-size: 1.15rem;
-            margin: 1.2rem 0 2rem;
-            max-width: 540px;
-            font-weight: 300;
-        }
-        .hero-btns {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
+        /* ===== BUTTONS ===== */
         .btn {
-            padding: 0.8rem 2.2rem;
-            border-radius: 50px;
-            border: none;
-            font-weight: 600;
             display: inline-flex;
             align-items: center;
             gap: 10px;
+            padding: 0.85rem 2.4rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: var(--transition);
+            border: none;
             cursor: pointer;
             text-decoration: none;
-            transition: var(--transition);
-            font-size: 1rem;
         }
         .btn-primary {
             background: var(--primary);
             color: var(--white);
-            box-shadow: 0 10px 24px rgba(230, 0, 18, 0.25);
+            box-shadow: 0 8px 24px rgba(230, 0, 18, 0.2);
         }
         .btn-primary:hover {
             background: var(--primary-dark);
             transform: translateY(-3px);
+            box-shadow: 0 12px 32px rgba(230, 0, 18, 0.3);
         }
         .btn-whatsapp {
-            background: #25d366;
+            background: #25D366;
             color: var(--white);
         }
         .btn-whatsapp:hover {
@@ -398,385 +318,26 @@
         .btn-outline:hover {
             background: var(--white);
             color: var(--black);
+            transform: translateY(-3px);
         }
-
-        /* Slider controls */
-        .slider-controls {
-            position: absolute;
-            bottom: 2rem;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            gap: 1.2rem;
-            z-index: 5;
-            align-items: center;
-        }
-        .slider-dots {
-            display: flex;
-            gap: 0.6rem;
-        }
-        .slider-dots span {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.3);
-            cursor: pointer;
-            transition: var(--transition);
-        }
-        .slider-dots span.active {
-            background: var(--primary);
-            width: 28px;
-            border-radius: 10px;
-        }
-        .slider-arrow {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(4px);
-            border: 1px solid rgba(255, 255, 255, 0.15);
+        .btn-dark {
+            background: var(--black);
             color: var(--white);
-            width: 44px;
-            height: 44px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: var(--transition);
-            font-size: 1.2rem;
         }
-        .slider-arrow:hover {
-            background: var(--primary);
+        .btn-dark:hover {
+            background: var(--gray-dark);
+            transform: translateY(-3px);
         }
-
-        /* ----- SECTION ----- */
-        .section {
-            padding: 5rem 2rem;
-            max-width: 1280px;
-            margin: 0 auto;
-        }
-        .section-title {
-            font-size: 2.6rem;
-            font-weight: 700;
-            letter-spacing: -0.8px;
-            margin-bottom: 0.6rem;
-        }
-        .section-title span {
-            color: var(--primary);
-        }
-        .section-sub {
-            color: var(--gray);
-            font-size: 1.1rem;
-            margin-bottom: 3rem;
-            font-weight: 400;
-            max-width: 700px;
-        }
-
-        /* ----- GLASS CARD ----- */
-        .glass-card {
-            background: var(--glass);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            border-radius: var(--radius);
-            padding: 2.2rem 2rem;
-            box-shadow: var(--shadow);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            transition: var(--transition);
-        }
-        .glass-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 32px 56px rgba(0, 0, 0, 0.06);
-            background: rgba(255, 255, 255, 0.88);
-        }
-
-        .grid-2 {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2.5rem;
-        }
-        .grid-3 {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 2.2rem;
-        }
-        .grid-4 {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 2rem;
-        }
-
-        .service-icon {
-            font-size: 2.8rem;
-            color: var(--primary);
-            margin-bottom: 0.5rem;
-        }
-        .service-card h3 {
-            font-size: 1.3rem;
-            margin: 0.3rem 0;
-        }
-        .service-card p {
-            color: var(--gray);
-            font-size: 0.95rem;
-        }
-
-        .stat-number {
-            font-size: 3rem;
-            font-weight: 800;
-            color: var(--primary);
-            letter-spacing: -1px;
-        }
-
-        /* ----- PROCESS TIMELINE ----- */
-        .process-steps {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 2rem;
-            text-align: center;
-        }
-        .process-step .step-num {
-            font-size: 2.8rem;
-            font-weight: 800;
-            color: var(--primary);
-            opacity: 0.2;
-        }
-        .process-step h4 {
-            font-size: 1.1rem;
-            margin: 0.4rem 0;
-        }
-
-        /* ----- TESTIMONIALS ----- */
-        .testimonial-slider {
-            display: flex;
-            gap: 2rem;
-            overflow-x: auto;
-            padding: 0.5rem 0.2rem 1.5rem;
-            scroll-snap-type: x mandatory;
-            -webkit-overflow-scrolling: touch;
-        }
-        .testimonial-slider .glass-card {
-            min-width: 280px;
-            flex: 0 0 auto;
-            scroll-snap-align: start;
-        }
-        .testi-author {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-top: 1.2rem;
-        }
-        .testi-author i {
-            font-size: 2.2rem;
-            color: var(--primary);
-        }
-        .stars {
-            color: #f5a623;
-            letter-spacing: 2px;
-        }
-
-        /* ----- OFFERS ----- */
-        .offer-card .offer-badge {
-            display: inline-block;
-            background: var(--primary);
-            color: var(--white);
-            padding: 0.2rem 1rem;
-            border-radius: 40px;
-            font-size: 0.75rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            margin-bottom: 0.6rem;
-        }
-        .offer-card .price {
-            font-size: 1.6rem;
-            font-weight: 700;
-            color: var(--primary);
-        }
-        .offer-card .old-price {
-            text-decoration: line-through;
-            color: #999;
-            font-size: 1rem;
-            margin-left: 0.5rem;
-        }
-
-        /* ----- FAQ ----- */
-        .faq-item {
-            border-bottom: 1px solid #e0e0e0;
-            padding: 1rem 0;
-        }
-        .faq-question {
-            display: flex;
-            justify-content: space-between;
-            font-weight: 600;
-            font-size: 1.05rem;
-            cursor: pointer;
-            padding: 0.4rem 0;
-        }
-        .faq-answer {
-            max-height: 0;
-            overflow: hidden;
-            transition: 0.3s ease;
-            color: var(--gray);
-        }
-        .faq-item.open .faq-answer {
-            max-height: 200px;
-            padding: 0.5rem 0 0.8rem;
-        }
-
-        /* ----- CTA BANNER ----- */
-        .cta-banner {
-            background: linear-gradient(135deg, var(--primary), #b3000e);
-            color: var(--white);
-            padding: 4rem 2.5rem;
-            border-radius: var(--radius);
-            text-align: center;
-            margin: 2rem auto 0;
-            max-width: 1100px;
-        }
-        .cta-banner h2 {
-            font-size: 2.8rem;
-            font-weight: 700;
-            letter-spacing: -1px;
-        }
-        .cta-banner .btn {
+        .btn-white {
             background: var(--white);
             color: var(--primary);
-            padding: 0.8rem 2.4rem;
-            border-radius: 50px;
-            font-weight: 600;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            transition: var(--transition);
-            border: none;
-            cursor: pointer;
-            margin: 0.4rem;
         }
-        .cta-banner .btn:hover {
-            transform: scale(1.04);
-            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.15);
-        }
-        .cta-banner .btn-wa {
-            background: #25d366;
-            color: var(--white);
-        }
-        .cta-banner .btn-wa:hover {
-            background: #1da851;
+        .btn-white:hover {
+            background: var(--light-gray);
+            transform: translateY(-3px);
         }
 
-        /* ----- FOOTER ----- */
-        .footer {
-            background: var(--black);
-            color: #b0b0b0;
-            padding: 4rem 2rem 1.5rem;
-            margin-top: 4rem;
-        }
-        .footer-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
-            gap: 2.5rem;
-            max-width: 1280px;
-            margin: 0 auto;
-        }
-        .footer a {
-            color: #b0b0b0;
-            text-decoration: none;
-            transition: var(--transition);
-        }
-        .footer a:hover {
-            color: var(--white);
-        }
-        .footer h4 {
-            color: var(--white);
-            font-weight: 600;
-            margin-bottom: 0.8rem;
-        }
-        .footer input[type="email"] {
-            padding: 0.6rem 1rem;
-            border-radius: 40px;
-            border: none;
-            width: 100%;
-            margin-top: 0.5rem;
-            background: #2a2a2a;
-            color: var(--white);
-        }
-        .footer input[type="email"]::placeholder {
-            color: #888;
-        }
-        .footer-bottom {
-            border-top: 1px solid #2a2a2a;
-            margin-top: 3rem;
-            padding-top: 1.8rem;
-            text-align: center;
-            font-size: 0.95rem;
-        }
-        .footer-dev a {
-            color: var(--white);
-            font-weight: 500;
-        }
-        .footer-dev a:hover {
-            color: var(--primary);
-        }
-
-        /* ----- FLOATING ----- */
-        .floating {
-            position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            display: flex;
-            flex-direction: column;
-            gap: 0.9rem;
-            z-index: 900;
-        }
-        .floating a {
-            width: 58px;
-            height: 58px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.8rem;
-            color: var(--white);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-            transition: var(--transition);
-            text-decoration: none;
-        }
-        .floating a:hover {
-            transform: scale(1.08);
-        }
-        .floating .call {
-            background: var(--primary);
-        }
-        .floating .whatsapp {
-            background: #25d366;
-        }
-
-        /* ----- SCROLL TOP ----- */
-        #scrollTop {
-            position: fixed;
-            bottom: 2rem;
-            left: 2rem;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: var(--black);
-            color: var(--white);
-            border: none;
-            font-size: 1.4rem;
-            cursor: pointer;
-            z-index: 900;
-            opacity: 0;
-            visibility: hidden;
-            transition: var(--transition);
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
-        }
-        #scrollTop.visible {
-            opacity: 1;
-            visibility: visible;
-        }
-        #scrollTop:hover {
-            background: var(--primary);
-            transform: scale(1.06);
-        }
-
-        /* ----- RIPPLE ----- */
+        /* ===== RIPPLE ===== */
         .ripple {
             position: relative;
             overflow: hidden;
@@ -787,7 +348,7 @@
             width: 100%;
             padding-top: 100%;
             border-radius: 50%;
-            background: rgba(255, 255, 255, 0.25);
+            background: rgba(255, 255, 255, 0.3);
             transform: scale(0);
             opacity: 0;
             pointer-events: none;
@@ -809,35 +370,623 @@
             }
         }
 
-        /* ----- RESPONSIVE ----- */
-        @media (max-width: 1024px) {
-            .nav-center {
-                gap: 1.8rem;
+        /* ===== HERO SLIDER ===== */
+        .hero-slider {
+            position: relative;
+            height: 88vh;
+            min-height: 500px;
+            overflow: hidden;
+            background: var(--black);
+        }
+        .hero-slide {
+            position: absolute;
+            inset: 0;
+            opacity: 0;
+            transition: opacity 0.9s ease;
+            display: flex;
+            align-items: center;
+            padding: 0 2.4rem;
+            background: linear-gradient(145deg, #0a0a0a 0%, #1a1a1a 100%);
+        }
+        .hero-slide.active {
+            opacity: 1;
+        }
+        .hero-slide .bg-pattern {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+        .hero-slide .bg-pattern span {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(230, 0, 18, 0.05);
+            animation: floatBg 25s infinite alternate ease-in-out;
+        }
+        .hero-slide .bg-pattern span:nth-child(1) {
+            width: 450px;
+            height: 450px;
+            top: -160px;
+            right: -100px;
+        }
+        .hero-slide .bg-pattern span:nth-child(2) {
+            width: 300px;
+            height: 300px;
+            bottom: -80px;
+            left: -80px;
+            animation-duration: 32s;
+            background: rgba(230, 0, 18, 0.03);
+        }
+        .hero-slide .bg-pattern span:nth-child(3) {
+            width: 180px;
+            height: 180px;
+            top: 25%;
+            left: 15%;
+            animation-duration: 18s;
+            background: rgba(255, 255, 255, 0.02);
+        }
+        @keyframes floatBg {
+            0% {
+                transform: translate(0, 0) scale(1);
             }
+            100% {
+                transform: translate(40px, -50px) scale(1.08);
+            }
+        }
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 720px;
+        }
+        .hero-content .badge {
+            display: inline-block;
+            background: rgba(230, 0, 18, 0.15);
+            color: var(--primary);
+            padding: 0.3rem 1.2rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            margin-bottom: 0.8rem;
+        }
+        .hero-content h1 {
+            font-size: clamp(2.8rem, 9vw, 5.5rem);
+            font-weight: 800;
+            letter-spacing: -1.5px;
+            color: var(--white);
+            line-height: 1.05;
+        }
+        .hero-content h1 span {
+            color: var(--primary);
+        }
+        .hero-content .sub {
+            font-size: 1.4rem;
+            font-weight: 400;
+            color: rgba(255, 255, 255, 0.8);
+            margin-top: 0.3rem;
+        }
+        .hero-content p {
+            color: rgba(255, 255, 255, 0.65);
+            font-size: 1.1rem;
+            margin: 1.2rem 0 2rem;
+            max-width: 520px;
+            font-weight: 300;
+        }
+        .hero-btns {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        /* Slider Controls */
+        .slider-controls {
+            position: absolute;
+            bottom: 2.4rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+            z-index: 5;
+        }
+        .slider-dots {
+            display: flex;
+            gap: 0.6rem;
+        }
+        .slider-dots span {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.25);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        .slider-dots span.active {
+            background: var(--primary);
+            width: 28px;
+            border-radius: 8px;
+        }
+        .slider-arrow {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.06);
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+            font-size: 1.1rem;
+        }
+        .slider-arrow:hover {
+            background: var(--primary);
+            border-color: var(--primary);
+        }
+
+        /* ===== SECTION ===== */
+        .section {
+            padding: 5rem 2.4rem;
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+        .section-title {
+            font-size: 2.6rem;
+            font-weight: 700;
+            letter-spacing: -0.8px;
+            margin-bottom: 0.4rem;
+        }
+        .section-title span {
+            color: var(--primary);
+        }
+        .section-sub {
+            color: var(--gray);
+            font-size: 1.1rem;
+            font-weight: 400;
+            max-width: 640px;
+            margin-bottom: 3rem;
+        }
+        .section-center {
+            text-align: center;
+        }
+        .section-center .section-sub {
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* ===== GLASS CARD ===== */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: var(--radius-lg);
+            padding: 2.2rem 2rem;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            transition: var(--transition);
+        }
+        .glass-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-md);
+            background: rgba(255, 255, 255, 0.92);
+        }
+
+        /* ===== GRIDS ===== */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2.4rem;
+        }
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        .grid-4 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1.8rem;
+        }
+
+        /* ===== SERVICE CARD ===== */
+        .service-card .icon {
+            font-size: 2.8rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+        .service-card h3 {
+            font-size: 1.25rem;
+            margin: 0.3rem 0;
+        }
+        .service-card p {
+            color: var(--gray);
+            font-size: 0.95rem;
+        }
+        .service-card .read-more {
+            color: var(--primary);
+            font-weight: 500;
+            display: inline-block;
+            margin-top: 0.8rem;
+            transition: var(--transition);
+        }
+        .service-card .read-more:hover {
+            transform: translateX(6px);
+        }
+
+        /* ===== STATS ===== */
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--primary);
+            letter-spacing: -1px;
+            line-height: 1.1;
+        }
+
+        /* ===== PROCESS ===== */
+        .process-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 2rem;
+            text-align: center;
+        }
+        .process-step .step-num {
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: var(--primary);
+            opacity: 0.15;
+        }
+        .process-step h4 {
+            font-size: 1.1rem;
+            margin: 0.2rem 0;
+        }
+        .process-step p {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        /* ===== TESTIMONIALS ===== */
+        .testimonial-slider {
+            display: flex;
+            gap: 2rem;
+            overflow-x: auto;
+            padding: 0.5rem 0.2rem 1.5rem;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+        }
+        .testimonial-slider .glass-card {
+            min-width: 280px;
+            flex: 0 0 auto;
+            scroll-snap-align: start;
+        }
+        .testi-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-top: 1.2rem;
+        }
+        .testi-author .avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: var(--light-gray);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.6rem;
+            color: var(--gray);
+        }
+        .stars {
+            color: #f5a623;
+            letter-spacing: 2px;
+            font-size: 0.95rem;
+        }
+
+        /* ===== OFFER CARD ===== */
+        .offer-card .badge {
+            display: inline-block;
+            background: var(--primary);
+            color: var(--white);
+            padding: 0.2rem 1rem;
+            border-radius: 50px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.6rem;
+        }
+        .offer-card .price {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        .offer-card .old-price {
+            text-decoration: line-through;
+            color: var(--gray-light);
+            font-size: 1rem;
+            margin-left: 0.5rem;
+        }
+
+        /* ===== FAQ ===== */
+        .faq-item {
+            border-bottom: 1px solid #e8e8e8;
+            padding: 1rem 0;
+        }
+        .faq-question {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            font-size: 1.05rem;
+            cursor: pointer;
+            padding: 0.3rem 0;
+            transition: var(--transition);
+        }
+        .faq-question:hover {
+            color: var(--primary);
+        }
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: 0.35s ease;
+            color: var(--gray);
+        }
+        .faq-item.open .faq-answer {
+            max-height: 200px;
+            padding: 0.5rem 0 0.8rem;
+        }
+        .faq-item.open .faq-question i {
+            transform: rotate(45deg);
+        }
+
+        /* ===== CTA BANNER ===== */
+        .cta-banner {
+            background: linear-gradient(135deg, var(--primary), #b3000e);
+            color: var(--white);
+            padding: 4rem 2.4rem;
+            border-radius: var(--radius-lg);
+            text-align: center;
+            margin: 0 auto;
+            max-width: 1150px;
+        }
+        .cta-banner h2 {
+            font-size: 2.6rem;
+            font-weight: 700;
+            letter-spacing: -0.8px;
+        }
+        .cta-banner p {
+            opacity: 0.9;
+            margin: 0.8rem 0 2rem;
+            font-size: 1.1rem;
+        }
+        .cta-banner .btn {
+            margin: 0.3rem;
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            background: var(--black);
+            color: #b0b0b0;
+            padding: 4rem 2.4rem 1.5rem;
+            margin-top: 4rem;
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 2.5rem;
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+        .footer a {
+            color: #b0b0b0;
+            transition: var(--transition);
+        }
+        .footer a:hover {
+            color: var(--white);
+        }
+        .footer h4 {
+            color: var(--white);
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+        }
+        .footer .social-icons {
+            display: flex;
+            gap: 0.8rem;
+            margin-top: 0.8rem;
+        }
+        .footer .social-icons a {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.04);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+            font-size: 1.2rem;
+        }
+        .footer .social-icons a:hover {
+            background: var(--primary);
+            color: var(--white);
+        }
+        .footer .map-placeholder {
+            background: #1a1a1a;
+            border-radius: var(--radius-sm);
+            padding: 0.8rem;
+            text-align: center;
+            color: #666;
+            margin-top: 0.5rem;
+        }
+        .footer .newsletter input {
+            padding: 0.7rem 1.2rem;
+            border-radius: 50px;
+            border: none;
+            width: 100%;
+            background: #1a1a1a;
+            color: var(--white);
+            margin-top: 0.5rem;
+            font-size: 0.95rem;
+        }
+        .footer .newsletter input::placeholder {
+            color: #666;
+        }
+        .footer .newsletter input:focus {
+            outline: 1px solid var(--primary);
+        }
+        .footer-bottom {
+            border-top: 1px solid #1a1a1a;
+            margin-top: 3rem;
+            padding-top: 1.8rem;
+            text-align: center;
+            font-size: 0.95rem;
+            max-width: 1280px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .footer-dev a {
+            color: var(--white);
+            font-weight: 500;
+        }
+        .footer-dev a:hover {
+            color: var(--primary);
+        }
+
+        /* ===== FLOATING BUTTONS ===== */
+        .floating {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+            z-index: 900;
+        }
+        .floating a {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.6rem;
+            color: var(--white);
+            box-shadow: 0 8px 28px rgba(0, 0, 0, 0.15);
+            transition: var(--transition);
+        }
+        .floating a:hover {
+            transform: scale(1.08);
+        }
+        .floating .call {
+            background: var(--primary);
+        }
+        .floating .whatsapp {
+            background: #25D366;
+        }
+
+        /* ===== SCROLL TOP ===== */
+        #scrollTop {
+            position: fixed;
+            bottom: 2rem;
+            left: 2rem;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: var(--black);
+            color: var(--white);
+            font-size: 1.3rem;
+            z-index: 900;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        #scrollTop.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        #scrollTop:hover {
+            background: var(--primary);
+            transform: scale(1.06);
+        }
+
+        /* ===== SCROLL REVEAL ===== */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .reveal-left {
+            opacity: 0;
+            transform: translateX(-40px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+        .reveal-left.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        .reveal-right {
+            opacity: 0;
+            transform: translateX(40px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+        .reveal-right.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 1024px) {
             .navbar {
-                padding: 0.8rem 1.6rem;
+                padding: 0.7rem 1.6rem;
+            }
+            .nav-links {
+                gap: 1.6rem;
+            }
+            .hero-slider {
+                height: 75vh;
+            }
+            .hero-slide {
+                padding: 0 1.6rem;
             }
         }
 
         @media (max-width: 768px) {
-            .nav-center {
+            .nav-links {
                 display: none;
             }
             .hamburger {
                 display: block;
             }
             .navbar {
-                padding: 0.7rem 1.2rem;
+                padding: 0.6rem 1.2rem;
             }
-            .nav-right .nav-cta {
+            .nav-cta {
                 display: none;
             }
             .hero-slider {
                 height: 70vh;
-                min-height: 450px;
+                min-height: 440px;
             }
             .hero-slide {
                 padding: 0 1.2rem;
+            }
+            .hero-content h1 {
+                font-size: 2.4rem;
+            }
+            .hero-content .sub {
+                font-size: 1.1rem;
+            }
+            .hero-content p {
+                font-size: 1rem;
             }
             .section {
                 padding: 3rem 1.2rem;
@@ -850,83 +999,108 @@
             .grid-4 {
                 grid-template-columns: 1fr;
             }
-            .cta-banner h2 {
-                font-size: 2rem;
-            }
             .cta-banner {
                 padding: 2.5rem 1.2rem;
+                border-radius: var(--radius-md);
+            }
+            .cta-banner h2 {
+                font-size: 2rem;
             }
             .floating {
                 right: 1rem;
                 bottom: 1.2rem;
             }
             .floating a {
-                width: 50px;
-                height: 50px;
-                font-size: 1.5rem;
+                width: 48px;
+                height: 48px;
+                font-size: 1.3rem;
             }
             #scrollTop {
                 left: 1rem;
-                width: 44px;
-                height: 44px;
-                font-size: 1.2rem;
+                width: 42px;
+                height: 42px;
+                font-size: 1.1rem;
+            }
+            .slider-controls {
+                bottom: 1.6rem;
+            }
+            .slider-arrow {
+                width: 36px;
+                height: 36px;
+                font-size: 0.9rem;
             }
             .testimonial-slider .glass-card {
-                min-width: 240px;
+                min-width: 220px;
             }
-            .process-steps {
+            .process-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .footer {
+                padding: 3rem 1.2rem 1.2rem;
+            }
+            .footer-grid {
                 grid-template-columns: 1fr 1fr;
             }
         }
 
         @media (max-width: 480px) {
             .logo {
-                font-size: 1.4rem;
+                font-size: 1.3rem;
             }
             .hero-content h1 {
-                font-size: 2.2rem;
+                font-size: 2rem;
             }
-            .hero-content .sub {
-                font-size: 1.1rem;
+            .hero-content .badge {
+                font-size: 0.7rem;
+                padding: 0.2rem 0.8rem;
+            }
+            .btn {
+                padding: 0.7rem 1.6rem;
+                font-size: 0.9rem;
             }
             .stat-number {
-                font-size: 2.2rem;
+                font-size: 2rem;
             }
-            .process-steps {
+            .process-grid {
                 grid-template-columns: 1fr;
             }
-            .slider-controls {
-                bottom: 1rem;
+            .footer-grid {
+                grid-template-columns: 1fr;
             }
-            .slider-arrow {
-                width: 36px;
-                height: 36px;
-                font-size: 1rem;
+            .slider-dots span {
+                width: 10px;
+                height: 10px;
+            }
+            .slider-dots span.active {
+                width: 22px;
             }
         }
 
         @media (max-width: 360px) {
             .hero-content h1 {
-                font-size: 1.9rem;
+                font-size: 1.7rem;
             }
-            .btn {
-                padding: 0.6rem 1.4rem;
-                font-size: 0.9rem;
+            .hero-content .sub {
+                font-size: 0.95rem;
+            }
+            .hero-btns .btn {
+                padding: 0.6rem 1.2rem;
+                font-size: 0.8rem;
             }
         }
     </style>
 </head>
 <body>
-    <!-- LOADER -->
+    <!-- ===== LOADER ===== -->
     <div id="loader"><div class="loader-ring"></div></div>
 
-    <!-- PROGRESS BAR -->
+    <!-- ===== PROGRESS BAR ===== -->
     <div id="progress-bar"></div>
 
-    <!-- OVERLAY -->
+    <!-- ===== OVERLAY ===== -->
     <div class="overlay" id="overlay"></div>
 
-    <!-- MOBILE NAV -->
+    <!-- ===== MOBILE NAV ===== -->
     <div class="mobile-nav" id="mobileNav">
         <button class="close-btn" id="closeNav"><i class="material-icons">close</i></button>
         <a href="index.html" class="active">Home</a>
@@ -937,17 +1111,15 @@
         <a href="tel:8298593107" class="nav-cta-mobile"><i class="fas fa-phone-alt"></i> Call Now</a>
     </div>
 
-    <!-- NAVBAR -->
-    <nav class="navbar">
-        <div class="nav-left">
-            <a href="index.html" class="logo">Sanjay<span>Telecom</span></a>
-        </div>
-        <ul class="nav-center">
-            <a href="index.html" class="active">Home</a>
-            <a href="about.html">About</a>
-            <a href="services.html">Services</a>
-            <a href="gallery.html">Gallery</a>
-            <a href="contact.html">Contact</a>
+    <!-- ===== NAVBAR ===== -->
+    <nav class="navbar" id="navbar">
+        <div class="logo">Sanjay<span>Telecom</span></div>
+        <ul class="nav-links">
+            <li><a href="index.html" class="active">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="contact.html">Contact</a></li>
         </ul>
         <div class="nav-right">
             <a href="tel:8298593107" class="nav-cta ripple"><i class="fas fa-phone-alt"></i> Call Now</a>
@@ -955,14 +1127,15 @@
         </div>
     </nav>
 
-    <!-- HERO SLIDER -->
+    <!-- ===== HERO SLIDER ===== -->
     <div class="hero-slider" id="heroSlider">
         <!-- Slide 1 -->
         <div class="hero-slide active" data-index="0">
-            <div class="shapes"><span></span><span></span><span></span></div>
+            <div class="bg-pattern"><span></span><span></span><span></span></div>
             <div class="hero-content">
+                <span class="badge">📡 Authorized Airtel Distributor</span>
                 <h1>Sanjay <span>Telecom</span></h1>
-                <div class="sub">Trusted Airtel Distributor</div>
+                <div class="sub">Trusted Airtel Partner</div>
                 <p>Recharge, SIM Activation, Broadband, DTH, Business Solutions and Digital Services.</p>
                 <div class="hero-btns">
                     <a href="tel:8298593107" class="btn btn-primary ripple"><i class="fas fa-phone-alt"></i> Call Now</a>
@@ -973,11 +1146,12 @@
         </div>
         <!-- Slide 2 -->
         <div class="hero-slide" data-index="1">
-            <div class="shapes"><span></span><span></span><span></span></div>
+            <div class="bg-pattern"><span></span><span></span><span></span></div>
             <div class="hero-content">
-                <h1>Fast <span>Activation</span></h1>
-                <div class="sub">SIM & Broadband in 2 Hours</div>
-                <p>Get your new Airtel connection activated within hours. We handle everything from KYC to installation.</p>
+                <span class="badge">⚡ Fast Activation</span>
+                <h1>SIM &amp; <span>Broadband</span></h1>
+                <div class="sub">Activated in 2 Hours</div>
+                <p>Get your new Airtel connection activated within hours. We handle KYC, installation, and setup.</p>
                 <div class="hero-btns">
                     <a href="services.html" class="btn btn-primary ripple"><i class="fas fa-bolt"></i> Get Started</a>
                     <a href="https://wa.me/918298593107" class="btn btn-whatsapp ripple"><i class="fab fa-whatsapp"></i> WhatsApp</a>
@@ -986,10 +1160,11 @@
         </div>
         <!-- Slide 3 -->
         <div class="hero-slide" data-index="2">
-            <div class="shapes"><span></span><span></span><span></span></div>
+            <div class="bg-pattern"><span></span><span></span><span></span></div>
             <div class="hero-content">
-                <h1>Business <span>Solutions</span></h1>
-                <div class="sub">Corporate Plans & Enterprise Connectivity</div>
+                <span class="badge">🏢 Business Solutions</span>
+                <h1>Corporate <span>Plans</span></h1>
+                <div class="sub">Enterprise Connectivity</div>
                 <p>Customized Airtel solutions for businesses – bulk SIMs, dedicated broadband, and priority support.</p>
                 <div class="hero-btns">
                     <a href="contact.html" class="btn btn-primary ripple"><i class="fas fa-briefcase"></i> Contact Sales</a>
@@ -1000,115 +1175,298 @@
 
         <!-- Controls -->
         <div class="slider-controls">
-            <button class="slider-arrow" id="prevSlide"><i class="fas fa-chevron-left"></i></button>
+            <button class="slider-arrow" id="prevSlide" aria-label="Previous slide"><i class="fas fa-chevron-left"></i></button>
             <div class="slider-dots" id="sliderDots">
                 <span class="active" data-index="0"></span>
                 <span data-index="1"></span>
                 <span data-index="2"></span>
             </div>
-            <button class="slider-arrow" id="nextSlide"><i class="fas fa-chevron-right"></i></button>
+            <button class="slider-arrow" id="nextSlide" aria-label="Next slide"><i class="fas fa-chevron-right"></i></button>
         </div>
     </div>
 
-    <!-- FEATURES / SERVICES PREVIEW -->
+    <!-- ===== FEATURES / SERVICES PREVIEW ===== -->
     <section class="section" id="services">
-        <h2 class="section-title">Our <span>Services</span></h2>
-        <p class="section-sub">Complete telecom solutions for home and business.</p>
+        <div class="section-center">
+            <h2 class="section-title">Our <span>Services</span></h2>
+            <p class="section-sub">Complete telecom solutions for home and business, backed by Airtel's trusted network.</p>
+        </div>
         <div class="grid-3">
-            <div class="glass-card service-card"><i class="fas fa-sim-card service-icon"></i><h3>New SIM</h3><p>Get new Airtel SIM with exciting offers and instant activation.</p><a href="services.html" style="color:var(--primary);font-weight:500;display:inline-block;margin-top:0.6rem;">Read More →</a></div>
-            <div class="glass-card service-card"><i class="fas fa-exchange-alt service-icon"></i><h3>MNP Port</h3><p>Switch to Airtel seamlessly while keeping your existing number.</p><a href="services.html" style="color:var(--primary);font-weight:500;display:inline-block;margin-top:0.6rem;">Read More →</a></div>
-            <div class="glass-card service-card"><i class="fas fa-wallet service-icon"></i><h3>Recharge</h3><p>Prepaid, postpaid & data top-ups with the best offers.</p><a href="services.html" style="color:var(--primary);font-weight:500;display:inline-block;margin-top:0.6rem;">Read More →</a></div>
-            <div class="glass-card service-card"><i class="fas fa-wifi service-icon"></i><h3>Broadband</h3><p>High-speed fiber & wireless broadband for home and office.</p><a href="services.html" style="color:var(--primary);font-weight:500;display:inline-block;margin-top:0.6rem;">Read More →</a></div>
-            <div class="glass-card service-card"><i class="fas fa-tv service-icon"></i><h3>DTH</h3><p>Airtel Digital TV with best channel packs and HD quality.</p><a href="services.html" style="color:var(--primary);font-weight:500;display:inline-block;margin-top:0.6rem;">Read More →</a></div>
-            <div class="glass-card service-card"><i class="fas fa-briefcase service-icon"></i><h3>Business Solutions</h3><p>Corporate plans, bulk SIMs, and dedicated enterprise support.</p><a href="services.html" style="color:var(--primary);font-weight:500;display:inline-block;margin-top:0.6rem;">Read More →</a></div>
+            <div class="glass-card service-card reveal">
+                <span class="icon"><i class="fas fa-sim-card"></i></span>
+                <h3>New SIM</h3>
+                <p>Get new Airtel SIM with exciting offers and instant activation delivered to your doorstep.</p>
+                <a href="services.html" class="read-more">Learn More →</a>
+            </div>
+            <div class="glass-card service-card reveal">
+                <span class="icon"><i class="fas fa-exchange-alt"></i></span>
+                <h3>MNP Port</h3>
+                <p>Switch to Airtel seamlessly while keeping your existing mobile number.</p>
+                <a href="services.html" class="read-more">Learn More →</a>
+            </div>
+            <div class="glass-card service-card reveal">
+                <span class="icon"><i class="fas fa-wallet"></i></span>
+                <h3>Recharge</h3>
+                <p>Prepaid, postpaid & data top-ups with the best offers and instant credit.</p>
+                <a href="services.html" class="read-more">Learn More →</a>
+            </div>
+            <div class="glass-card service-card reveal">
+                <span class="icon"><i class="fas fa-wifi"></i></span>
+                <h3>Broadband</h3>
+                <p>High-speed fiber & wireless broadband for home and office with free installation.</p>
+                <a href="services.html" class="read-more">Learn More →</a>
+            </div>
+            <div class="glass-card service-card reveal">
+                <span class="icon"><i class="fas fa-tv"></i></span>
+                <h3>DTH</h3>
+                <p>Airtel Digital TV with best channel packs, HD quality, and quick installation.</p>
+                <a href="services.html" class="read-more">Learn More →</a>
+            </div>
+            <div class="glass-card service-card reveal">
+                <span class="icon"><i class="fas fa-briefcase"></i></span>
+                <h3>Business Solutions</h3>
+                <p>Corporate plans, bulk SIMs, dedicated broadband, and enterprise support.</p>
+                <a href="services.html" class="read-more">Learn More →</a>
+            </div>
         </div>
     </section>
 
-    <!-- WHY CHOOSE US -->
-    <section class="section" style="background:var(--light-gray);border-radius:40px;margin:0 auto 2rem;padding:4rem 2rem;">
-        <h2 class="section-title">Why <span>Choose Us</span></h2>
+    <!-- ===== WHY CHOOSE US ===== -->
+    <section class="section" style="background: var(--light-gray); border-radius: var(--radius-lg); margin: 0 auto 2rem; padding: 4rem 2.4rem; max-width: 1280px;">
+        <div class="section-center">
+            <h2 class="section-title">Why <span>Choose Us</span></h2>
+            <p class="section-sub">We're more than just a distributor – we're your trusted telecom partner.</p>
+        </div>
         <div class="grid-3">
-            <div class="glass-card"><i class="fas fa-bolt" style="font-size:2.2rem;color:var(--primary);"></i><h3>Fast Activation</h3><p>SIM & broadband activated within 2 hours.</p></div>
-            <div class="glass-card"><i class="fas fa-shield-alt" style="font-size:2.2rem;color:var(--primary);"></i><h3>Trusted Service</h3><p>Authorized Airtel partner since 2016.</p></div>
-            <div class="glass-card"><i class="fas fa-wallet" style="font-size:2.2rem;color:var(--primary);"></i><h3>Affordable Plans</h3><p>Best prices on all Airtel services.</p></div>
-            <div class="glass-card"><i class="fas fa-users" style="font-size:2.2rem;color:var(--primary);"></i><h3>Experienced Team</h3><p>8+ years in telecom industry.</p></div>
-            <div class="glass-card"><i class="fas fa-headset" style="font-size:2.2rem;color:var(--primary);"></i><h3>Quick Support</h3><p>24×7 customer support.</p></div>
-            <div class="glass-card"><i class="fas fa-check-circle" style="font-size:2.2rem;color:var(--primary);"></i><h3>100% Genuine</h3><p>Direct Airtel distributor with genuine plans.</p></div>
+            <div class="glass-card reveal">
+                <i class="fas fa-bolt" style="font-size: 2.2rem; color: var(--primary);"></i>
+                <h3>Fast Activation</h3>
+                <p>SIM & broadband activated within 2 hours of application.</p>
+            </div>
+            <div class="glass-card reveal">
+                <i class="fas fa-shield-alt" style="font-size: 2.2rem; color: var(--primary);"></i>
+                <h3>Trusted Service</h3>
+                <p>Authorized Airtel distributor with 8+ years of experience.</p>
+            </div>
+            <div class="glass-card reveal">
+                <i class="fas fa-wallet" style="font-size: 2.2rem; color: var(--primary);"></i>
+                <h3>Affordable Plans</h3>
+                <p>Best prices on all Airtel services with exclusive offers.</p>
+            </div>
+            <div class="glass-card reveal">
+                <i class="fas fa-users" style="font-size: 2.2rem; color: var(--primary);"></i>
+                <h3>Experienced Team</h3>
+                <p>Industry experts dedicated to your connectivity needs.</p>
+            </div>
+            <div class="glass-card reveal">
+                <i class="fas fa-headset" style="font-size: 2.2rem; color: var(--primary);"></i>
+                <h3>24×7 Support</h3>
+                <p>Round-the-clock assistance for all your service queries.</p>
+            </div>
+            <div class="glass-card reveal">
+                <i class="fas fa-check-circle" style="font-size: 2.2rem; color: var(--primary);"></i>
+                <h3>100% Genuine</h3>
+                <p>Direct Airtel distributor with authentic products and plans.</p>
+            </div>
         </div>
     </section>
 
-    <!-- STATISTICS -->
+    <!-- ===== STATISTICS ===== -->
     <section class="section">
-        <h2 class="section-title" style="text-align:center;">Our <span>Impact</span></h2>
+        <div class="section-center">
+            <h2 class="section-title">Our <span>Impact</span></h2>
+        </div>
         <div class="grid-4" id="counterSection">
-            <div class="glass-card" style="text-align:center;"><div class="stat-number" id="count1">0</div><p>Happy Customers</p></div>
-            <div class="glass-card" style="text-align:center;"><div class="stat-number" id="count2">0</div><p>SIM Activated</p></div>
-            <div class="glass-card" style="text-align:center;"><div class="stat-number" id="count3">0</div><p>Broadband Installed</p></div>
-            <div class="glass-card" style="text-align:center;"><div class="stat-number" id="count4">0</div><p>Business Clients</p></div>
+            <div class="glass-card reveal" style="text-align: center;">
+                <div class="stat-number" id="count1">0</div>
+                <p>Happy Customers</p>
+            </div>
+            <div class="glass-card reveal" style="text-align: center;">
+                <div class="stat-number" id="count2">0</div>
+                <p>SIM Activated</p>
+            </div>
+            <div class="glass-card reveal" style="text-align: center;">
+                <div class="stat-number" id="count3">0</div>
+                <p>Broadband Installed</p>
+            </div>
+            <div class="glass-card reveal" style="text-align: center;">
+                <div class="stat-number" id="count4">0</div>
+                <p>Business Clients</p>
+            </div>
         </div>
     </section>
 
-    <!-- PROCESS -->
-    <section class="section" style="background:var(--light-gray);border-radius:40px;margin:0 auto 2rem;padding:4rem 2rem;">
-        <h2 class="section-title" style="text-align:center;">How It <span>Works</span></h2>
-        <div class="process-steps">
-            <div class="process-step"><div class="step-num">01</div><h4>Contact Us</h4><p style="color:var(--gray);font-size:0.95rem;">Call or WhatsApp to get started.</p></div>
-            <div class="process-step"><div class="step-num">02</div><h4>Choose Service</h4><p style="color:var(--gray);font-size:0.95rem;">Select from our range of plans.</p></div>
-            <div class="process-step"><div class="step-num">03</div><h4>Verification</h4><p style="color:var(--gray);font-size:0.95rem;">Quick KYC and document verification.</p></div>
-            <div class="process-step"><div class="step-num">04</div><h4>Activation</h4><p style="color:var(--gray);font-size:0.95rem;">Service activated in under 2 hours.</p></div>
+    <!-- ===== PROCESS ===== -->
+    <section class="section" style="background: var(--light-gray); border-radius: var(--radius-lg); margin: 0 auto 2rem; padding: 4rem 2.4rem; max-width: 1280px;">
+        <div class="section-center">
+            <h2 class="section-title">How It <span>Works</span></h2>
+            <p class="section-sub">Get connected in just 4 simple steps.</p>
+        </div>
+        <div class="process-grid">
+            <div class="process-step reveal">
+                <div class="step-num">01</div>
+                <h4>Contact Us</h4>
+                <p>Call or WhatsApp to get started</p>
+            </div>
+            <div class="process-step reveal">
+                <div class="step-num">02</div>
+                <h4>Choose Service</h4>
+                <p>Select from our range of plans</p>
+            </div>
+            <div class="process-step reveal">
+                <div class="step-num">03</div>
+                <h4>Verification</h4>
+                <p>Quick KYC and documentation</p>
+            </div>
+            <div class="process-step reveal">
+                <div class="step-num">04</div>
+                <h4>Activation</h4>
+                <p>Service activated in under 2 hours</p>
+            </div>
         </div>
     </section>
 
-    <!-- TESTIMONIALS -->
+    <!-- ===== TESTIMONIALS ===== -->
     <section class="section">
-        <h2 class="section-title">Client <span>Stories</span></h2>
+        <div class="section-center">
+            <h2 class="section-title">Client <span>Stories</span></h2>
+            <p class="section-sub">What our customers say about us.</p>
+        </div>
         <div class="testimonial-slider" id="testiSlider">
-            <div class="glass-card"><div class="stars">★★★★★</div><p>“Fast activation and best price. Sanjay Telecom is my go-to for Airtel services.”</p><div class="testi-author"><i class="fas fa-user-circle"></i><div><strong>Rajesh K.</strong><br>Business Owner</div></div></div>
-            <div class="glass-card"><div class="stars">★★★★★</div><p>“Seamless porting from other network. Great support team!”</p><div class="testi-author"><i class="fas fa-user-circle"></i><div><strong>Priya M.</strong><br>IT Professional</div></div></div>
-            <div class="glass-card"><div class="stars">★★★★★</div><p>“Broadband installed within hours. Highly recommend for corporate plans.”</p><div class="testi-author"><i class="fas fa-user-circle"></i><div><strong>Amit S.</strong><br>Startup Founder</div></div></div>
+            <div class="glass-card reveal">
+                <div class="stars">★★★★★</div>
+                <p style="font-size: 1rem; margin-top: 0.5rem;">"Fast activation and best price. Sanjay Telecom is my go-to for Airtel services."</p>
+                <div class="testi-author">
+                    <div class="avatar"><i class="fas fa-user"></i></div>
+                    <div><strong>Rajesh K.</strong><br><span style="font-size: 0.85rem; color: var(--gray);">Business Owner</span></div>
+                </div>
+            </div>
+            <div class="glass-card reveal">
+                <div class="stars">★★★★★</div>
+                <p style="font-size: 1rem; margin-top: 0.5rem;">"Seamless porting from other network. Great support team!"</p>
+                <div class="testi-author">
+                    <div class="avatar"><i class="fas fa-user"></i></div>
+                    <div><strong>Priya M.</strong><br><span style="font-size: 0.85rem; color: var(--gray);">IT Professional</span></div>
+                </div>
+            </div>
+            <div class="glass-card reveal">
+                <div class="stars">★★★★★</div>
+                <p style="font-size: 1rem; margin-top: 0.5rem;">"Broadband installed within hours. Highly recommend for corporate plans."</p>
+                <div class="testi-author">
+                    <div class="avatar"><i class="fas fa-user"></i></div>
+                    <div><strong>Amit S.</strong><br><span style="font-size: 0.85rem; color: var(--gray);">Startup Founder</span></div>
+                </div>
+            </div>
         </div>
     </section>
 
-    <!-- LATEST OFFERS -->
-    <section class="section">
-        <h2 class="section-title">Latest <span>Offers</span></h2>
+    <!-- ===== LATEST OFFERS ===== -->
+    <section class="section" style="background: var(--light-gray); border-radius: var(--radius-lg); margin: 0 auto 2rem; padding: 4rem 2.4rem; max-width: 1280px;">
+        <div class="section-center">
+            <h2 class="section-title">Latest <span>Offers</span></h2>
+            <p class="section-sub">Exclusive deals on Airtel services – limited time only.</p>
+        </div>
         <div class="grid-3">
-            <div class="glass-card offer-card"><span class="offer-badge">🔥 Hot</span><i class="fas fa-wallet" style="font-size:2.2rem;color:var(--primary);"></i><h3>Recharge Offers</h3><p>Extra 10% data on all prepaid plans.</p><div class="price">₹199 <span class="old-price">₹249</span></div></div>
-            <div class="glass-card offer-card"><span class="offer-badge">⚡ Limited</span><i class="fas fa-wifi" style="font-size:2.2rem;color:var(--primary);"></i><h3>Broadband Offers</h3><p>Free 3 months on annual fiber plans.</p><div class="price">₹699 <span class="old-price">₹899</span></div></div>
-            <div class="glass-card offer-card"><span class="offer-badge">🎯 Best Deal</span><i class="fas fa-tachometer-alt" style="font-size:2.2rem;color:var(--primary);"></i><h3>Fiber Offers</h3><p>Upgrade to 300 Mbps at 200 Mbps price.</p><div class="price">₹999 <span class="old-price">₹1299</span></div></div>
+            <div class="glass-card offer-card reveal">
+                <span class="badge">🔥 Hot</span>
+                <i class="fas fa-wallet" style="font-size: 2.2rem; color: var(--primary);"></i>
+                <h3>Recharge Offers</h3>
+                <p>Extra 10% data on all prepaid plans</p>
+                <div class="price">₹199 <span class="old-price">₹249</span></div>
+            </div>
+            <div class="glass-card offer-card reveal">
+                <span class="badge">⚡ Limited</span>
+                <i class="fas fa-wifi" style="font-size: 2.2rem; color: var(--primary);"></i>
+                <h3>Broadband Offers</h3>
+                <p>Free 3 months on annual fiber plans</p>
+                <div class="price">₹699 <span class="old-price">₹899</span></div>
+            </div>
+            <div class="glass-card offer-card reveal">
+                <span class="badge">🎯 Best Deal</span>
+                <i class="fas fa-tachometer-alt" style="font-size: 2.2rem; color: var(--primary);"></i>
+                <h3>Fiber Offers</h3>
+                <p>Upgrade to 300 Mbps at 200 Mbps price</p>
+                <div class="price">₹999 <span class="old-price">₹1299</span></div>
+            </div>
         </div>
-        <div style="text-align:center;margin-top:2rem;"><a href="gallery.html" class="btn btn-primary ripple">View All Offers →</a></div>
+        <div style="text-align: center; margin-top: 2rem;">
+            <a href="gallery.html" class="btn btn-primary ripple">View All Offers →</a>
+        </div>
     </section>
 
-    <!-- FAQ -->
+    <!-- ===== FAQ ===== -->
     <section class="section">
-        <h2 class="section-title">Frequently <span>Asked</span></h2>
-        <div class="faq-container">
-            <div class="faq-item"><div class="faq-question">How to get a new Airtel SIM? <i class="fas fa-plus"></i></div><div class="faq-answer">Visit our store or contact us – we'll deliver and activate within 2 hours.</div></div>
-            <div class="faq-item"><div class="faq-question">What is MNP porting? <i class="fas fa-plus"></i></div><div class="faq-answer">Mobile Number Portability lets you switch to Airtel while keeping your number. We handle the entire process.</div></div>
-            <div class="faq-item"><div class="faq-question">Do you offer corporate plans? <i class="fas fa-plus"></i></div><div class="faq-answer">Yes, we provide customized business plans with bulk SIMs and dedicated support.</div></div>
+        <div class="section-center">
+            <h2 class="section-title">Frequently <span>Asked</span></h2>
+            <p class="section-sub">Quick answers to common questions.</p>
+        </div>
+        <div class="faq-container" style="max-width: 800px; margin: 0 auto;">
+            <div class="faq-item">
+                <div class="faq-question">How to get a new Airtel SIM? <i class="fas fa-plus"></i></div>
+                <div class="faq-answer">Visit our store or contact us – we'll deliver and activate within 2 hours. We handle the entire KYC process.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">What is MNP porting? <i class="fas fa-plus"></i></div>
+                <div class="faq-answer">Mobile Number Portability lets you switch to Airtel while keeping your number. We handle the entire porting process.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">Do you offer corporate plans? <i class="fas fa-plus"></i></div>
+                <div class="faq-answer">Yes, we provide customized business plans with bulk SIMs, dedicated broadband, and priority support for enterprises.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">What are your business hours? <i class="fas fa-plus"></i></div>
+                <div class="faq-answer">We're available Monday to Saturday, 9 AM to 8 PM. WhatsApp support is available 24×7 for urgent queries.</div>
+            </div>
         </div>
     </section>
 
-    <!-- CTA BANNER -->
-    <div class="cta-banner">
+    <!-- ===== CTA BANNER ===== -->
+    <div class="cta-banner reveal">
         <h2>Need an Airtel Connection?</h2>
-        <p style="margin:0.8rem 0 1.8rem;opacity:0.9;font-size:1.1rem;">Call us or WhatsApp for instant assistance.</p>
-        <a href="tel:8298593107" class="btn ripple"><i class="fas fa-phone-alt"></i> Call Now</a>
-        <a href="https://wa.me/918298593107" class="btn btn-wa ripple"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+        <p>Call us or WhatsApp for instant assistance. We're here to help.</p>
+        <a href="tel:8298593107" class="btn btn-white ripple"><i class="fas fa-phone-alt"></i> Call Now</a>
+        <a href="https://wa.me/918298593107" class="btn btn-whatsapp ripple"><i class="fab fa-whatsapp"></i> WhatsApp</a>
     </div>
 
-    <!-- FOOTER -->
+    <!-- ===== FOOTER ===== -->
     <footer class="footer">
         <div class="footer-grid">
-            <div><h4 style="color:#fff;">Sanjay Telecom</h4><p>Trusted Airtel Distributor</p><p><i class="fas fa-phone-alt"></i> 8298593107</p><p><i class="fab fa-whatsapp"></i> 8298593107</p></div>
-            <div><h4>Quick Links</h4><a href="index.html">Home</a><br><a href="about.html">About</a><br><a href="services.html">Services</a><br><a href="gallery.html">Gallery</a><br><a href="contact.html">Contact</a></div>
-            <div><h4>Follow</h4><a href="#"><i class="fab fa-facebook"></i> Facebook</a><br><a href="#"><i class="fab fa-instagram"></i> Instagram</a><br><a href="#"><i class="fab fa-youtube"></i> YouTube</a></div>
-            <div><h4>Visit</h4><div style="background:#2a2a2a;border-radius:16px;padding:0.8rem;text-align:center;color:#888;"><i class="fas fa-map-pin"></i> Google Map</div></div>
-        </div>
-        <div style="max-width:1280px;margin:2rem auto 0;">
-            <h4 style="color:#fff;">Subscribe</h4>
-            <input type="email" placeholder="Enter your email for offers" style="padding:0.8rem 1.2rem;border-radius:40px;border:none;width:100%;max-width:380px;background:#2a2a2a;color:var(--white);" />
+            <div>
+                <h4 style="color: var(--white);">Sanjay Telecom</h4>
+                <p>Trusted Airtel Distributor</p>
+                <p style="margin-top: 0.8rem;"><i class="fas fa-phone-alt"></i> 8298593107</p>
+                <p><i class="fab fa-whatsapp"></i> 8298593107</p>
+                <div class="social-icons">
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+            <div>
+                <h4>Quick Links</h4>
+                <a href="index.html">Home</a><br>
+                <a href="about.html">About</a><br>
+                <a href="services.html">Services</a><br>
+                <a href="gallery.html">Gallery</a><br>
+                <a href="contact.html">Contact</a>
+            </div>
+            <div>
+                <h4>Business Hours</h4>
+                <p>Mon–Sat: 9:00 AM – 8:00 PM</p>
+                <p>Sunday: Closed</p>
+                <p style="margin-top: 0.5rem; color: #666;">Emergency support via WhatsApp</p>
+            </div>
+            <div>
+                <h4>Visit Us</h4>
+                <div class="map-placeholder">
+                    <i class="fas fa-map-pin"></i> Google Map Location
+                </div>
+                <div class="newsletter" style="margin-top: 1.2rem;">
+                    <h4 style="font-size: 0.95rem;">Subscribe for Offers</h4>
+                    <input type="email" placeholder="Enter your email" />
+                </div>
+            </div>
         </div>
         <div class="footer-bottom">
             <div>© 2026 Sanjay Telecom. All rights reserved.</div>
@@ -1116,29 +1474,44 @@
         </div>
     </footer>
 
-    <!-- FLOATING -->
+    <!-- ===== FLOATING BUTTONS ===== -->
     <div class="floating">
-        <a href="tel:8298593107" class="call"><i class="fas fa-phone-alt"></i></a>
-        <a href="https://wa.me/918298593107" class="whatsapp"><i class="fab fa-whatsapp"></i></a>
+        <a href="tel:8298593107" class="call" aria-label="Call"><i class="fas fa-phone-alt"></i></a>
+        <a href="https://wa.me/918298593107" class="whatsapp" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
     </div>
 
-    <!-- SCROLL TOP -->
+    <!-- ===== SCROLL TOP ===== -->
     <button id="scrollTop" aria-label="Scroll to top"><i class="fas fa-arrow-up"></i></button>
 
+    <!-- ===== JAVASCRIPT ===== -->
     <script>
         (function() {
-            // ----- LOADER -----
-            window.addEventListener('load', () => document.getElementById('loader').classList.add('hide'));
+            'use strict';
 
-            // ----- PROGRESS BAR -----
-            window.addEventListener('scroll', () => {
+            // ---- LOADER ----
+            window.addEventListener('load', function() {
+                document.getElementById('loader').classList.add('hide');
+            });
+
+            // ---- PROGRESS BAR ----
+            window.addEventListener('scroll', function() {
                 const scrollTop = window.scrollY;
                 const docHeight = document.documentElement.scrollHeight - window.innerHeight;
                 const progress = (scrollTop / docHeight) * 100;
                 document.getElementById('progress-bar').style.width = progress + '%';
             });
 
-            // ----- MOBILE NAV -----
+            // ---- NAVBAR SCROLL EFFECT ----
+            const navbar = document.getElementById('navbar');
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 20) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            });
+
+            // ---- MOBILE NAV ----
             const hamburger = document.getElementById('hamburger');
             const mobileNav = document.getElementById('mobileNav');
             const overlay = document.getElementById('overlay');
@@ -1149,48 +1522,25 @@
                 overlay.classList.toggle('active', open);
                 document.body.style.overflow = open ? 'hidden' : '';
             }
-            hamburger.addEventListener('click', () => toggleNav(true));
-            closeNav.addEventListener('click', () => toggleNav(false));
-            overlay.addEventListener('click', () => toggleNav(false));
 
-            // ----- SCROLL TOP -----
+            hamburger.addEventListener('click', function() { toggleNav(true); });
+            closeNav.addEventListener('click', function() { toggleNav(false); });
+            overlay.addEventListener('click', function() { toggleNav(false); });
+
+            // ---- SCROLL TOP ----
             const scrollBtn = document.getElementById('scrollTop');
-            window.addEventListener('scroll', () => {
-                if (window.scrollY > 400) scrollBtn.classList.add('visible');
-                else scrollBtn.classList.remove('visible');
-            });
-            scrollBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
-
-            // ----- COUNTER -----
-            const counters = [
-                { el: document.getElementById('count1'), target: 1280 },
-                { el: document.getElementById('count2'), target: 940 },
-                { el: document.getElementById('count3'), target: 670 },
-                { el: document.getElementById('count4'), target: 320 }
-            ];
-            let animated = false;
-
-            function animateCounters() {
-                if (animated) return;
-                const rect = document.getElementById('counterSection').getBoundingClientRect();
-                if (rect.top < window.innerHeight && rect.bottom >= 0) {
-                    animated = true;
-                    counters.forEach((c) => {
-                        let current = 0;
-                        const step = Math.ceil(c.target / 60);
-                        const interval = setInterval(() => {
-                            current += step;
-                            if (current >= c.target) { current = c.target;
-                                clearInterval(interval); }
-                            c.el.textContent = current;
-                        }, 25);
-                    });
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 400) {
+                    scrollBtn.classList.add('visible');
+                } else {
+                    scrollBtn.classList.remove('visible');
                 }
-            }
-            window.addEventListener('scroll', animateCounters);
-            window.addEventListener('load', () => setTimeout(animateCounters, 600));
+            });
+            scrollBtn.addEventListener('click', function() {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
 
-            // ----- HERO SLIDER -----
+            // ---- HERO SLIDER ----
             const slides = document.querySelectorAll('.hero-slide');
             const dots = document.querySelectorAll('.slider-dots span');
             const prevBtn = document.getElementById('prevSlide');
@@ -1199,10 +1549,10 @@
             let slideInterval;
 
             function goToSlide(index) {
-                slides.forEach((s, i) => {
+                slides.forEach(function(s, i) {
                     s.classList.toggle('active', i === index);
                 });
-                dots.forEach((d, i) => {
+                dots.forEach(function(d, i) {
                     d.classList.toggle('active', i === index);
                 });
                 currentSlide = index;
@@ -1217,7 +1567,7 @@
             }
 
             function startAutoSlide() {
-                slideInterval = setInterval(nextSlide, 5000);
+                slideInterval = setInterval(nextSlide, 5500);
             }
 
             function resetAutoSlide() {
@@ -1225,29 +1575,29 @@
                 startAutoSlide();
             }
 
-            dots.forEach((dot, index) => {
-                dot.addEventListener('click', () => {
+            dots.forEach(function(dot, index) {
+                dot.addEventListener('click', function() {
                     goToSlide(index);
                     resetAutoSlide();
                 });
             });
 
-            prevBtn.addEventListener('click', () => {
+            prevBtn.addEventListener('click', function() {
                 prevSlide();
                 resetAutoSlide();
             });
-            nextBtn.addEventListener('click', () => {
+            nextBtn.addEventListener('click', function() {
                 nextSlide();
                 resetAutoSlide();
             });
 
-            // Touch support for slider
+            // Touch support
             let touchStartX = 0;
             const slider = document.getElementById('heroSlider');
-            slider.addEventListener('touchstart', (e) => {
+            slider.addEventListener('touchstart', function(e) {
                 touchStartX = e.changedTouches[0].screenX;
             });
-            slider.addEventListener('touchend', (e) => {
+            slider.addEventListener('touchend', function(e) {
                 const diff = touchStartX - e.changedTouches[0].screenX;
                 if (Math.abs(diff) > 50) {
                     if (diff > 0) { nextSlide();
@@ -1258,34 +1608,96 @@
 
             startAutoSlide();
 
-            // ----- TESTIMONIALS AUTO SLIDE -----
-            const testiSlider = document.getElementById('testiSlider');
-            let testiInterval = setInterval(() => {
-                if (testiSlider.scrollLeft + testiSlider.clientWidth >= testiSlider.scrollWidth) testiSlider
-                    .scrollLeft = 0;
-                else testiSlider.scrollLeft += 300;
-            }, 4000);
-            testiSlider.addEventListener('mouseenter', () => clearInterval(testiInterval));
-            testiSlider.addEventListener('mouseleave', () => {
-                testiInterval = setInterval(() => {
-                    if (testiSlider.scrollLeft + testiSlider.clientWidth >= testiSlider.scrollWidth) testiSlider
-                        .scrollLeft = 0;
-                    else testiSlider.scrollLeft += 300;
-                }, 4000);
+            // ---- COUNTER ANIMATION ----
+            const counters = [
+                { el: document.getElementById('count1'), target: 1280 },
+                { el: document.getElementById('count2'), target: 940 },
+                { el: document.getElementById('count3'), target: 670 },
+                { el: document.getElementById('count4'), target: 320 }
+            ];
+            let countersAnimated = false;
+
+            function animateCounters() {
+                if (countersAnimated) return;
+                const rect = document.getElementById('counterSection').getBoundingClientRect();
+                if (rect.top < window.innerHeight && rect.bottom >= 0) {
+                    countersAnimated = true;
+                    counters.forEach(function(c) {
+                        let current = 0;
+                        const step = Math.ceil(c.target / 60);
+                        const interval = setInterval(function() {
+                            current += step;
+                            if (current >= c.target) {
+                                current = c.target;
+                                clearInterval(interval);
+                            }
+                            c.el.textContent = current;
+                        }, 25);
+                    });
+                }
+            }
+
+            window.addEventListener('scroll', animateCounters);
+            window.addEventListener('load', function() {
+                setTimeout(animateCounters, 500);
             });
 
-            // ----- FAQ ACCORDION -----
-            document.querySelectorAll('.faq-question').forEach(q => {
+            // ---- TESTIMONIALS AUTO SLIDE ----
+            const testiSlider = document.getElementById('testiSlider');
+            let testiInterval = setInterval(function() {
+                if (testiSlider.scrollLeft + testiSlider.clientWidth >= testiSlider.scrollWidth) {
+                    testiSlider.scrollLeft = 0;
+                } else {
+                    testiSlider.scrollLeft += 280;
+                }
+            }, 4500);
+
+            testiSlider.addEventListener('mouseenter', function() {
+                clearInterval(testiInterval);
+            });
+            testiSlider.addEventListener('mouseleave', function() {
+                testiInterval = setInterval(function() {
+                    if (testiSlider.scrollLeft + testiSlider.clientWidth >= testiSlider.scrollWidth) {
+                        testiSlider.scrollLeft = 0;
+                    } else {
+                        testiSlider.scrollLeft += 280;
+                    }
+                }, 4500);
+            });
+
+            // ---- FAQ ACCORDION ----
+            document.querySelectorAll('.faq-question').forEach(function(q) {
                 q.addEventListener('click', function() {
                     const item = this.parentElement;
                     const isOpen = item.classList.contains('open');
-                    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
-                    if (!isOpen) item.classList.add('open');
+                    document.querySelectorAll('.faq-item').forEach(function(i) {
+                        i.classList.remove('open');
+                    });
+                    if (!isOpen) {
+                        item.classList.add('open');
+                    }
                 });
             });
 
-            // ----- RIPPLE -----
-            document.querySelectorAll('.ripple').forEach(btn => {
+            // ---- SCROLL REVEAL ----
+            const revealElements = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+
+            function checkReveal() {
+                revealElements.forEach(function(el) {
+                    const rect = el.getBoundingClientRect();
+                    if (rect.top < window.innerHeight - 60) {
+                        el.classList.add('visible');
+                    }
+                });
+            }
+
+            window.addEventListener('scroll', checkReveal);
+            window.addEventListener('load', function() {
+                setTimeout(checkReveal, 300);
+            });
+
+            // ---- RIPPLE EFFECT ----
+            document.querySelectorAll('.ripple').forEach(function(btn) {
                 btn.addEventListener('click', function(e) {
                     const ripple = document.createElement('span');
                     const rect = this.getBoundingClientRect();
@@ -1293,13 +1705,16 @@
                     const x = e.clientX - rect.left - size / 2;
                     const y = e.clientY - rect.top - size / 2;
                     ripple.style.cssText =
-                        `position:absolute; border-radius:50%; background:rgba(255,255,255,0.35); width:${size}px; height:${size}px; left:${x}px; top:${y}px; pointer-events:none; transform:scale(0); animation:rippleAnim 0.5s ease-out;`;
+                        'position:absolute; border-radius:50%; background:rgba(255,255,255,0.3); width:' +
+                        size + 'px; height:' + size + 'px; left:' + x + 'px; top:' + y +
+                        'px; pointer-events:none; transform:scale(0); animation:rippleAnim 0.5s ease-out;';
                     this.style.position = 'relative';
                     this.style.overflow = 'hidden';
                     this.appendChild(ripple);
-                    setTimeout(() => ripple.remove(), 600);
+                    setTimeout(function() { ripple.remove(); }, 600);
                 });
             });
+
         })();
     </script>
 </body>
